@@ -1,0 +1,18 @@
+# Modelos de Revit y backups (no son parte del pipeline de Dynamo)
+*.rvt
+*.rte
+*.rfa
+*.rvt.lock
+*.0001.rvt
+Revit Backup*/
+
+# Journals y locks de Dynamo/Revit
+*.log
+~$*
+
+# Configuracion local de Claude Code (personal, no compartir)
+.claude/settings.local.json
+
+# Basura de SO
+Thumbs.db
+.DS_Store
