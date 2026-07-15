@@ -57,6 +57,27 @@ y está diseñado para **no tocar nada de esa rutina**:
   barras que no forman un set (ej. Layout "Single"), sin necesidad de releer el Layout
   Rule — no depende de la lógica de tags de 03. Idempotente: solo cambia las barras que
   no están ya en ese modo.
+- **Barras de pedestal ocultas en la planta si hay 2+ pedestales (00 y 03,
+  automático, 2026-07-15, regla de negocio definida con jefatura)**: **no** es un
+  filtro por barra individual — es un conteo por assembly. Si el assembly tiene
+  **2 o más** instancias "tipo pedestal" (cualquier familia cuyo nombre contenga
+  "Pedestal", case-insensitive: además de la familia pura `C-Pedestal` existen
+  familias **combinadas** fundación+pedestal en una sola pieza, ej. `C-Fundacion+
+  Pedestal`, `C-Fundacion+2-Pedestal`, donde el sub-componente que hospeda la barra
+  — ej. una capa `C-CapaCimiento` como "G35" — cuelga *directo* de esa familia
+  combinada vía `SuperComponent`, sin nivel intermedio "solo pedestal" separable),
+  **ninguna** barra de **ningún** pedestal de ese assembly se muestra en la planta:
+  es ambiguo a cuál pedestal pertenece cada barra, y en las familias combinadas no
+  se puede separar la parte de fundación de la de pedestal. Con **0 o 1** pedestal
+  en el assembly no se oculta nada — se muestran todas las barras normalmente,
+  sin ambigüedad. Identificación: `Rebar.GetHostId()` para llegar al host y de ahí
+  `FamilyInstance.SuperComponent` hacia arriba hasta dar con una de las instancias
+  de pedestal del assembly (comparación por `ElementId`, no por nombre — el nombre
+  solo se usa para **contar** cuántos pedestales tiene el assembly). El 00 las
+  oculta explícitamente en la planta (`View.HideElements`, no solo deja de
+  aplicarles Unobscured/First-and-Last) y el 03 tampoco las taguea. **Cortes A/B y
+  los callouts de pedestal siguen mostrándolas a propósito** — el filtro es solo
+  para la planta.
 - **Títulos en lámina**: planta `FN-1001 - ARMADURA` (Title on Sheet, 00) y cortes
   `FN-1001 - ARMADURA - CORTE {letra}` (02).
 - **Tabla de cantidades (06) con filtro propio**: marca los miembros con el parámetro
