@@ -1,0 +1,591 @@
+{
+    "Uuid":  "2ba79ce4-61fa-46d6-add0-5b5f300796df",
+    "IsCustomNode":  false,
+    "Description":  "OPCIONAL - Recorre las barras, identifica la tipologia de cada una (canastillo inferior/superior, cerco lateral, longitudinal de pedestal, estribo) y le ESCRIBE el parametro Partition, que el 00 y el 03 necesitan para sus filtros. Las que logra identificar quedan pintadas con su color en la vista 3D indicada; las que no, quedan sin color y aisladas en una vista aparte llamada ARM - BARRAS SIN PARTITION para revisarlas a mano. Solo rellena barras con Partition vacio, nunca pisa lo ya cargado.",
+    "Name":  "05_Asignar Partition",
+    "ElementResolver":  {
+                            "ResolutionMap":  {
+
+                                              }
+                        },
+    "Inputs":  [
+                   {
+                       "Id":  "b4010000000000000000000000000001",
+                       "Name":  "Solo AUDITAR, no escribe nada (dejar en False para asignar)",
+                       "Type":  "boolean",
+                       "Type2":  "boolean",
+                       "Value":  "false",
+                       "Description":  "Enables selection between True and False"
+                   },
+                   {
+                       "Id":  "b4020000000000000000000000000001",
+                       "Name":  "Filtro por nombre de assembly (vacio = todo el modelo)",
+                       "Type":  "string",
+                       "Type2":  "string",
+                       "Value":  "",
+                       "Description":  "Creates a string."
+                   },
+                   {
+                       "Id":  "b4030000000000000000000000000001",
+                       "Name":  "SEC-LAT: cercania al borde (% de la zapata)",
+                       "Type":  "number",
+                       "Type2":  "number",
+                       "Value":  "8",
+                       "MaximumValue":  50.0,
+                       "MinimumValue":  -50.0,
+                       "StepValue":  1.0,
+                       "NumberType":  "Integer",
+                       "Description":  "Produces integer values"
+                   },
+                   {
+                       "Id":  "b4040000000000000000000000000001",
+                       "Name":  "Vista 3D para pintar (parcial sirve; vacio = no pintar)",
+                       "Type":  "string",
+                       "Type2":  "string",
+                       "Value":  "javier.ochoa",
+                       "Description":  "Creates a string."
+                   },
+                   {
+                       "Id":  "b4050000000000000000000000000001",
+                       "Name":  "Malla: cuanto abarca el set de la zapata (%)",
+                       "Type":  "number",
+                       "Type2":  "number",
+                       "Value":  "60",
+                       "MaximumValue":  40.0,
+                       "MinimumValue":  0.0,
+                       "StepValue":  1.0,
+                       "NumberType":  "Integer",
+                       "Description":  "Produces integer values"
+                   },
+                   {
+                       "Id":  "b4060000000000000000000000000001",
+                       "Name":  "PPL-PPL: tolerancia vertical (grados)",
+                       "Type":  "number",
+                       "Type2":  "number",
+                       "Value":  "30",
+                       "MaximumValue":  40.0,
+                       "MinimumValue":  1.0,
+                       "StepValue":  1.0,
+                       "NumberType":  "Integer",
+                       "Description":  "Produces integer values"
+                   }
+               ],
+    "Outputs":  [
+                    {
+                        "Id":  "c4010000000000000000000000000001",
+                        "Name":  "Log",
+                        "Type":  "unknown",
+                        "InitialValue":  "",
+                        "Description":  "Visualizes a node\u0027s output"
+                    }
+                ],
+    "Nodes":  [
+                  {
+                      "ConcreteType":  "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+                      "Id":  "b4010000000000000000000000000001",
+                      "NodeType":  "BooleanInputNode",
+                      "Inputs":  [
+
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "b4010000000000000000000000000002",
+                                          "Name":  "",
+                                          "Description":  "Boolean",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Enables selection between True and False",
+                      "InputValue":  false
+                  },
+                  {
+                      "ConcreteType":  "CoreNodeModels.Input.StringInput, CoreNodeModels",
+                      "SerializedWidth":  0.0,
+                      "SerializedHeight":  0.0,
+                      "Id":  "b4020000000000000000000000000001",
+                      "NodeType":  "StringInputNode",
+                      "Inputs":  [
+
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "b4020000000000000000000000000002",
+                                          "Name":  "",
+                                          "Description":  "String",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Creates a string.",
+                      "InputValue":  ""
+                  },
+                  {
+                      "ConcreteType":  "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+                      "NumberType":  "Integer",
+                      "MaximumValue":  100,
+                      "MinimumValue":  0,
+                      "StepValue":  1,
+                      "Id":  "b4030000000000000000000000000001",
+                      "NodeType":  "NumberInputNode",
+                      "Inputs":  [
+
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "b4030000000000000000000000000002",
+                                          "Name":  "",
+                                          "Description":  "Int64",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Produces integer values",
+                      "InputValue":  8
+                  },
+                  {
+                      "ConcreteType":  "CoreNodeModels.Input.StringInput, CoreNodeModels",
+                      "SerializedWidth":  0.0,
+                      "SerializedHeight":  0.0,
+                      "Id":  "b4040000000000000000000000000001",
+                      "NodeType":  "StringInputNode",
+                      "Inputs":  [
+
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "b4040000000000000000000000000002",
+                                          "Name":  "",
+                                          "Description":  "String",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Creates a string.",
+                      "InputValue":  "javier.ochoa"
+                  },
+                  {
+                      "ConcreteType":  "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+                      "NumberType":  "Integer",
+                      "MaximumValue":  100,
+                      "MinimumValue":  0,
+                      "StepValue":  1,
+                      "Id":  "b4050000000000000000000000000001",
+                      "NodeType":  "NumberInputNode",
+                      "Inputs":  [
+
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "b4050000000000000000000000000002",
+                                          "Name":  "",
+                                          "Description":  "Int64",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Produces integer values",
+                      "InputValue":  60
+                  },
+                  {
+                      "ConcreteType":  "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+                      "NumberType":  "Integer",
+                      "MaximumValue":  90,
+                      "MinimumValue":  0,
+                      "StepValue":  1,
+                      "Id":  "b4060000000000000000000000000001",
+                      "NodeType":  "NumberInputNode",
+                      "Inputs":  [
+
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "b4060000000000000000000000000002",
+                                          "Name":  "",
+                                          "Description":  "Int64",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Produces integer values",
+                      "InputValue":  30
+                  },
+                  {
+                      "ConcreteType":  "PythonNodeModels.PythonNode, PythonNodeModels",
+                      "Code":  "# 05_Asignar Partition - OPCIONAL. Clasifica automaticamente cada barra por su tipologia y\n# le escribe el parametro de instancia `Partition`. Pensado para modelos que vienen SIN ese\n# dato cargado (el 00 y el 03 lo necesitan para sus filtros de visibilidad y tagueo).\n#\n# Tipologias y reglas (definidas con Javier, 2026-07-21, validadas contra el modelo de\n# referencia que SI tiene los Partition correctos):\n#\n#   SEC-EST  estribos / amarras del pedestal\n#            -\u003e RebarShape.RebarStyle == StirrupTie  (mismo criterio que ya usa el 03)\n#   PPL-PPL  barras longitudinales del pedestal\n#            -\u003e el tramo principal corre VERTICAL (confirmado: bbox Z 24-\u003e1112mm con\n#               ancho igual al diametro)\n#   SEC-RFZ  refuerzo suelto que se agrega entre el array y el borde de la zapata\n#            -\u003e cruza como las de malla pero NO es Number with Spacing (barra suelta).\n#               Se evalua ANTES que SEC-LAT: ambas quedan cerca del canto, y el layout\n#               rule es el dato inequivoco que las separa.\n#   SEC-LAT  cerco perimetral del borde de la zapata (sujeta la zapata por los costados)\n#            -\u003e el SET no abarca la zapata: se queda localizado PEGADO a un borde\n#   PPL-INF  canastillo inferior   -\u003e malla, tramo principal por DEBAJO del medio\n#   PPL-SUP  canastillo superior   -\u003e malla, tramo principal por ENCIMA del medio\n#\n# El orden de evaluacion importa: es un arbol de decision, la primera regla que matchea gana.\n#\n# EL SCRIPT SE ABSTIENE cuando no esta seguro (pedido de Javier, 2026-07-21): antes, toda\n# barra horizontal terminaba forzada a PPL-INF/PPL-SUP segun su altura, aunque no hubiera\n# ninguna evidencia de que fuera una barra de malla. Ahora, si no se cumplen las condiciones\n# de confianza (ver el bloque de malla al final de clasificar), devuelve None: la barra\n# queda SIN Partition, SIN color, y aislada en la vista de pendientes para asignarla a mano.\n# Es preferible no responder a inventar una respuesta que despues hay que ir a cazar.\n#\n# MODO AUDITORIA (IN[0] = True, por defecto): NO escribe nada. Recorre las barras, las\n# clasifica y COMPARA contra el Partition que ya tengan, reportando aciertos y fallos. Sirve\n# para validar las reglas sobre un modelo ya resuelto ANTES de soltarlo en uno sin datos.\n#\n# Al aplicar, solo RELLENA barras con Partition vacio (no pisa lo ya cargado).\n#\n# Revit 2027 / Dynamo 4 / CPython3\n# IN[0] = Solo auditar (True = no escribe nada, solo reporta)\n# IN[1] = filtro por nombre de assembly (parcial, comas; vacio = TODAS las barras del modelo)\n# IN[2] = tolerancia de borde para SEC-LAT (% de la dimension de la zapata)\n# IN[3] = nombre de la vista donde aplicar los colores (vacio = no aplicar colores)\n# IN[4] = umbral \"el set abarca la zapata\" (% de la dimension)\n# IN[5] = tolerancia vertical para PPL-PPL (grados respecto a la vertical)\n\nimport clr\nimport math\nclr.AddReference(\u0027RevitAPI\u0027)\nclr.AddReference(\u0027RevitServices\u0027)\nfrom Autodesk.Revit.DB import (FilteredElementCollector, BuiltInCategory, BuiltInParameter,\n                               ElementId, View, AssemblyInstance, FamilyInstance,\n                               ParameterFilterElement, ElementParameterFilter,\n                               ParameterFilterRuleFactory, OverrideGraphicSettings, Color,\n                               Element, FillPatternElement, ViewDuplicateOption,\n                               TemporaryViewMode)\n# OJO: MultiplanarOption vive en el namespace .Structure, NO en Autodesk.Revit.DB\n# (importarlo desde DB tira \"cannot import name\" y voltea todo el script).\nfrom Autodesk.Revit.DB.Structure import Rebar, RebarStyle, MultiplanarOption\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System.Collections.Generic import List\n\ndoc = DocumentManager.Instance.CurrentDBDocument\n\nsolo_auditar = bool(IN[0])\nfiltro_txt = (IN[1] or \u0027\u0027).strip()\ntol_borde = float(IN[2]) / 100.0\nvista_colores = (IN[3] or \u0027\u0027).strip()\numbral_abarca = float(IN[4]) / 100.0\ntol_vertical_grados = float(IN[5])\n\nCOS_VERTICAL = math.cos(math.radians(max(1.0, min(89.0, tol_vertical_grados))))\n\n# colores por tipologia (los de la lamina de referencia de Javier; SEC-RFZ = magenta,\n# elegido para no repetir ninguno de los otros cinco)\nCOLORES = {\n    \u0027PPL-INF\u0027: (0, 0, 255),      # azul\n    \u0027PPL-SUP\u0027: (255, 0, 0),      # rojo\n    \u0027SEC-LAT\u0027: (0, 176, 80),     # verde\n    \u0027PPL-PPL\u0027: (255, 128, 0),    # naranjo\n    \u0027SEC-EST\u0027: (0, 176, 240),    # celeste\n    \u0027SEC-RFZ\u0027: (255, 0, 255),    # magenta\n}\nPREFIJO_FILTRO = \u0027ARM_PARTITION_\u0027\n# marcador que los modeladores escriben en Schedule Mark para el cerco lateral\nTEXTO_LATERAL = \u0027LATERAL\u0027\n# Umbrales de CONFIANZA para afirmar que una barra es de malla (PPL-INF / PPL-SUP). Si no\n# se cumplen, el script se abstiene y manda la barra a la vista de pendientes.\n# - FACTOR_DESBORDE: cuanto puede medir el tramo respecto a la dimension del host antes de\n#   considerar que ese host no es el elemento que la contiene (medido: las mallas legitimas\n#   dan 86-96%, y los casos problematicos 137% y hasta 480%).\n# - MARGEN_ALTURA: que tan lejos del medio del host debe caer el tramo para decidir si es\n#   canastillo superior o inferior (medido: las mallas reales estan al 43-47% de la altura).\nFACTOR_DESBORDE = 1.2\nMARGEN_ALTURA = 0.15\n\n# Nombre FIJO de la vista derivada con las barras pendientes. Es fijo y sin llaves a\n# proposito: las vistas 3D de Revit se llaman \"{3D - usuario}\" y Revit NO acepta llaves en\n# un nombre de vista puesto por el usuario/API, asi que derivar el nombre de la vista base\n# hacia fallar SIEMPRE el renombrado y dejaba la duplicada como \"... Copy 1\" (bug real\n# 2026-07-21). Ademas, al no contener el nombre de la vista base, no compite con ella en la\n# busqueda por coincidencia parcial.\nNOMBRE_VISTA_PENDIENTES = \u0027ARM - BARRAS SIN PARTITION\u0027\n\nlog = []\n\n\ndef elem_name(e):\n    try:\n        return e.Name\n    except Exception:\n        return Element.Name.__get__(e)\n\n\ndef leer_partition(r):\n    try:\n        p = r.LookupParameter(\u0027Partition\u0027)\n    except Exception:\n        p = None\n    if p is None:\n        return None\n    try:\n        v = p.AsString()\n    except Exception:\n        v = None\n    return v.strip() if v else \u0027\u0027\n\n\ndef leer_schedule_mark(r):\n    # texto libre que escriben los modeladores; lleva marcadores semanticos como\n    # \"(LATERAL)\" o \"(SUP.-INF.)\".\n    p = None\n    try:\n        p = r.LookupParameter(\u0027Schedule Mark\u0027)\n        if p is None:\n            for q in r.Parameters:\n                try:\n                    if \u0027schedule mark\u0027 in q.Definition.Name.strip().lower():\n                        p = q\n                        break\n                except Exception:\n                    continue\n    except Exception:\n        return \u0027\u0027\n    if p is None:\n        return \u0027\u0027\n    try:\n        v = p.AsString()\n    except Exception:\n        return \u0027\u0027\n    return v.strip() if v else \u0027\u0027\n\n\ndef param_partition(r):\n    # devuelve el Parameter \u0027Partition\u0027 (built-in de Rebar, no compartido) buscando por\n    # nombre: asi no hace falta acertarle al nombre exacto del BuiltInParameter.\n    try:\n        for p in r.Parameters:\n            try:\n                if p.Definition.Name.strip().lower() == \u0027partition\u0027:\n                    return p\n            except Exception:\n                continue\n    except Exception:\n        pass\n    return None\n\n\ndef es_estribo(r):\n    # mismo criterio que es_estribo_stirrup_tie del 03: el ESTILO vive en la RebarShape,\n    # no en la barra. RebarShape.RebarStyle == StirrupTie identifica estribos/amarras.\n    try:\n        shape = doc.GetElement(r.GetShapeId())\n        if shape is None:\n            return False\n        return shape.RebarStyle == RebarStyle.StirrupTie\n    except Exception:\n        return False\n\n\ndef es_number_with_spacing(r):\n    # El RebarShapeDrivenAccessor NO tiene getter para el Layout Rule (es de solo\n    # escritura, ver leer_layout_rule del 03): hay que leerlo del parametro de instancia,\n    # buscando por coincidencia PARCIAL del nombre (\u0027layout\u0027) y con AsValueString(),\n    # porque es un enum. Mismo patron ya probado en el 03.\n    try:\n        for p in r.Parameters:\n            try:\n                nombre = p.Definition.Name\n            except Exception:\n                continue\n            if \u0027layout\u0027 in nombre.lower():\n                txt = p.AsValueString()\n                if txt:\n                    return txt.strip().lower() == \u0027number with spacing\u0027\n    except Exception:\n        pass\n    return False\n\n\ndef cantidad_barras(r):\n    # nro de barras del set (Rebar.Quantity). Se usa para exigir que un SEC-RFZ sea de\n    # verdad una barra suelta y no un array modelado con otro layout rule.\n    try:\n        return int(r.Quantity)\n    except Exception:\n        try:\n            p = r.LookupParameter(\u0027Quantity\u0027)\n            return int(p.AsInteger()) if p is not None else 1\n        except Exception:\n            return 1\n\n\ndef tramo_principal(r):\n    # (p0, p1, largo) de la curva MAS LARGA de la barra = su tramo principal (el \"B\" del\n    # despiece). Se usa para la direccion y para la altura, en vez del bounding box, que\n    # incluye los ganchos y hace que INF y SUP se solapen en Z (verificado: INF 12-208mm,\n    # SUP 92-300mm - el bbox no los separa, el tramo principal si).\n    # Firma correcta (la misma que ya usa el 03): 3 bool + el ENUM MultiplanarOption + el\n    # indice de barra. En la 1a corrida se paso un int crudo (0) en vez del enum y sin\n    # importarlo: la llamada fallaba y dejaba SIN CLASIFICAR a todas las barras que no eran\n    # estribo (334 de 425) - los estribos se salvaban porque se resuelven antes, sin\n    # geometria.\n    try:\n        curvas = r.GetCenterlineCurves(False, True, True, MultiplanarOption.IncludeOnlyPlanarCurves, 0)\n    except Exception:\n        return None\n    mejor = None\n    mejor_l = 0.0\n    lo = [None, None, None]\n    hi = [None, None, None]\n    for c in curvas:\n        try:\n            l = c.Length\n            p0 = c.GetEndPoint(0)\n            p1 = c.GetEndPoint(1)\n        except Exception:\n            continue\n        for p in (p0, p1):\n            for i, val in enumerate((p.X, p.Y, p.Z)):\n                if lo[i] is None or val \u003c lo[i]:\n                    lo[i] = val\n                if hi[i] is None or val \u003e hi[i]:\n                    hi[i] = val\n        if l \u003e mejor_l:\n            mejor_l = l\n            mejor = (p0, p1, l)\n    if mejor is None or lo[0] is None:\n        return None\n    p0, p1, l = mejor\n    # extensiones de ESTA barra sacadas de sus propias curvas. NO se usa\n    # Element.get_BoundingBox(None): para Rebar devuelve None y por eso el fix de\n    # verticalidad de la 2a auditoria no se ejecuto nunca (PPL-PPL quedo clavado en 148).\n    return (p0, p1, l, hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2])\n\n\ndef bbox_host(r):\n    # extents del hormigon que aloja la barra = la \"zapata\" de referencia para los tests\n    # de altura y de borde.\n    try:\n        hid = r.GetHostId()\n    except Exception:\n        return None\n    if hid is None or hid == ElementId.InvalidElementId:\n        return None\n    el = doc.GetElement(hid)\n    if el is None:\n        return None\n    try:\n        return el.get_BoundingBox(None)\n    except Exception:\n        return None\n\n\ndef clasificar(r):\n    # Arbol de decision: la PRIMERA regla que matchea gana. Devuelve (partition, motivo)\n    # o (None, motivo) si no se pudo clasificar.\n    if es_estribo(r):\n        return \u0027SEC-EST\u0027, \u0027RebarStyle = StirrupTie\u0027\n\n    # SEC-LAT por MARCADOR SEMANTICO (hallazgo de Javier, 2026-07-21): los modeladores\n    # escriben \"(LATERAL)\" en Schedule Mark cuando la barra cumple rol de cerco lateral.\n    # Es el UNICO dato que las distingue: geometricamente son IDENTICAS a las de malla\n    # (mismo tipo \"O16 / Traccion : Shape TIPO-3\", mismo diametro y misma forma -\n    # verificado por MCP), y ningun umbral geometrico las separa (4 intentos fallidos,\n    # ver el bloque SEC-LAT DESACTIVADO mas abajo). Un marcador escrito a proposito por\n    # el modelador manda sobre cualquier heuristica, asi que se evalua temprano.\n    if TEXTO_LATERAL in leer_schedule_mark(r).upper():\n        return \u0027SEC-LAT\u0027, \u0027Schedule Mark contiene ({})\u0027.format(TEXTO_LATERAL)\n\n    tp = tramo_principal(r)\n    if tp is None:\n        return None, \u0027sin curvas de eje utilizables\u0027\n    p0, p1, largo, ext_x, ext_y, ext_z = tp\n    v = p1.Subtract(p0)\n    if v.GetLength() \u003c 1e-9:\n        return None, \u0027tramo principal degenerado\u0027\n    d = v.Normalize()\n\n    # Verticalidad: NO basta con que el tramo mas largo sea vertical. Hay barras de\n    # pedestal en L cuyo tramo de anclaje HORIZONTAL dentro de la zapata es mas largo que\n    # el tramo vertical (26 fallos reales en la auditoria del 2026-07-21: PPL-PPL\n    # clasificadas como malla). Se acepta tambien la barra \"mas alta que ancha\": su\n    # desarrollo vertical total supera al horizontal, que es justo lo que distingue a una\n    # barra que sube por el pedestal de una que se acuesta en la zapata.\n    mas_alta_que_ancha = ext_z \u003e= max(ext_x, ext_y)\n    if abs(d.Z) \u003e= COS_VERTICAL or mas_alta_que_ancha:\n        return \u0027PPL-PPL\u0027, \u0027desarrollo vertical dominante (z={:.0f} x={:.0f} y={:.0f} mm)\u0027.format(\n            ext_z * 304.8, ext_x * 304.8, ext_y * 304.8)\n\n    bb = bbox_host(r)\n    if bb is None:\n        return None, \u0027sin host de hormigon para ubicarla\u0027\n\n    dx = bb.Max.X - bb.Min.X\n    dy = bb.Max.Y - bb.Min.Y\n    if dx \u003c= 1e-9 or dy \u003c= 1e-9:\n        return None, \u0027host sin extension en planta\u0027\n\n    # Geometria del TRAMO PRINCIPAL respecto a la zapata: cuanto la cruza y que tan cerca\n    # de un borde corre. Se mide sobre la BARRA (su tramo), no sobre el spread del SET:\n    # medir el set fue el error de la 1a auditoria (una malla chica dentro de una zapata\n    # grande daba \"18% de la zapata\" y se colaba como cerco).\n    cx = (p0.X + p1.X) / 2.0\n    cy = (p0.Y + p1.Y) / 2.0\n    if abs(d.X) \u003e= abs(d.Y):\n        dim_dir = dx                                        # el tramo corre en X\n        dist_borde = min(cy - bb.Min.Y, bb.Max.Y - cy) / dy  # ...borde perpendicular en Y\n    else:\n        dim_dir = dy\n        dist_borde = min(cx - bb.Min.X, bb.Max.X - cx) / dx\n    # cuanto se DISTRIBUYE el set a lo ancho de la zapata (perpendicular al tramo): una\n    # malla se reparte por toda la zapata; el cerco perimetral queda acotado a un canto.\n    abarca = None\n    try:\n        bbs = r.get_BoundingBox(None)\n    except Exception:\n        bbs = None\n    if bbs is not None:\n        if abs(d.X) \u003e= abs(d.Y):\n            abarca = (bbs.Max.Y - bbs.Min.Y) / dy\n        else:\n            abarca = (bbs.Max.X - bbs.Min.X) / dx\n\n    # diagnostico: los numeros que llevaron a la decision, para poder calibrar la regla\n    # con datos en vez de suposiciones (se imprimen en los fallos de la auditoria).\n    diag = \u0027 [largo={:.0f} zapata={:.0f} borde={:.0f}% abarca={} z={:.0f} medio={:.0f} extz={:.0f}]\u0027.format(\n        largo * 304.8, dim_dir * 304.8, dist_borde * 100.0,\n        (\u0027{:.0f}%\u0027.format(abarca * 100.0) if abarca is not None else \u0027n/d\u0027),\n        ((p0.Z + p1.Z) / 2.0) * 304.8, ((bb.Min.Z + bb.Max.Z) / 2.0) * 304.8, ext_z * 304.8)\n\n    # --- SEC-LAT: DESACTIVADO a proposito ---\n    # No hay ninguna combinacion de los datos disponibles que separe el cerco de la malla.\n    # Medido en la 4a auditoria (2026-07-21): los cercos REALES dan abarca=61% y borde=7%,\n    # mientras que las barras de malla que la regla capturaba por error dan abarca=0-18% y\n    # borde=1-3%. O sea, el cerco esta MENOS pegado al borde y abarca MAS que las mallas\n    # que se colaban: cualquier umbral sobre esas dos variables ordena los casos al reves.\n    # Se probaron tres versiones (spread del set; \"no cruza la zapata\"; borde+spread) y la\n    # mejor de todas empeoraba el total: ganaba ~12 cercos a costa de arruinar ~42 barras\n    # de malla (81.1% contra 87.0% sin la regla). Con la regla apagada, las barras de cerco\n    # caen como PPL-INF/PPL-SUP y se corrigen a mano - son 14 en todo el modelo, y Javier\n    # las identifica a simple vista con los colores. NO reactivar sin un dato nuevo que de\n    # verdad las distinga (una forma propia, un diametro dedicado, o un shape distinto).\n\n    # --- SEC-RFZ: DESACTIVADO a proposito ---\n    # El modelo de referencia no tiene NINGUNA barra SEC-RFZ (338 comparables = PPL-PPL 174\n    # + SEC-EST 88 + PPL-SUP 32 + PPL-INF 30 + SEC-LAT 14), asi que la regla no se puede\n    # validar contra nada. Las dos versiones probadas se comieron mallas legitimas: \"solo\n    # no Number with Spacing\" dio 72 falsos positivos, y agregarle \"barra unica + junto al\n    # borde\" dio 60. Como ademas su ubicacion la decide el maestro en obra, SEC-RFZ queda\n    # para asignacion MANUAL. Los helpers es_number_with_spacing/cantidad_barras se dejan\n    # listos por si mas adelante aparece un modelo con SEC-RFZ real para calibrarla.\n\n    # --- malla: canastillo inferior vs superior, por la altura del TRAMO PRINCIPAL ---\n    # Solo se afirma si hay CONFIANZA. Si alguna condicion no se cumple, el script SE\n    # ABSTIENE (devuelve None): la barra queda sin Partition, sin color, y aislada en la\n    # vista de pendientes para asignarla a mano. Pedido de Javier (2026-07-21): es\n    # preferible no responder a inventar una respuesta que despues hay que cazar.\n    z_tramo = (p0.Z + p1.Z) / 2.0\n    z_medio = (bb.Min.Z + bb.Max.Z) / 2.0\n    alto_host = bb.Max.Z - bb.Min.Z\n\n    # (a) tiene que CRUZAR el elemento: una barra de malla va de lado a lado. Si es corta\n    # y localizada puede ser un cerco o un refuerzo suelto -\u003e no se arriesga.\n    if dim_dir \u003e 1e-9 and largo \u003c umbral_abarca * dim_dir:\n        return None, \u0027no cruza el elemento, puede ser cerco o refuerzo\u0027 + diag\n\n    # (b) el tramo NO puede exceder por mucho la dimension del host: si lo hace, el host\n    # que devuelve GetHostId no es el elemento que la contiene y toda la referencia de\n    # altura deja de ser confiable. Es el caso de las mallas horizontales largas a media\n    # altura (largo 2549 y 6984 mm contra hosts de 1455-2265 mm, o sea 137% y hasta 480%),\n    # que el modelo de referencia etiqueta PPL-PPL y la regla de altura leia como malla.\n    if dim_dir \u003e 1e-9 and largo \u003e FACTOR_DESBORDE * dim_dir:\n        return None, \u0027el tramo excede la dimension del host ({:.0f}%), host poco confiable\u0027.format(\n            100.0 * largo / dim_dir) + diag\n\n    # (c) la altura tiene que ser INEQUIVOCA: si el tramo cae cerca del medio del host no\n    # hay forma de saber si es canastillo superior o inferior.\n    if alto_host \u003e 1e-9 and abs(z_tramo - z_medio) \u003c MARGEN_ALTURA * alto_host:\n        return None, \u0027altura ambigua respecto al medio del host\u0027 + diag\n\n    if z_tramo \u003c z_medio:\n        return \u0027PPL-INF\u0027, \u0027malla bajo el medio\u0027 + diag\n    return \u0027PPL-SUP\u0027, \u0027malla sobre el medio\u0027 + diag\n\n\n# --- barras objetivo ---\ndef barras_objetivo():\n    todas = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rebar)\n                 .WhereElementIsNotElementType().ToElements())\n    if not filtro_txt:\n        return todas\n    tokens = [t.strip().lower() for t in filtro_txt.split(\u0027,\u0027) if t.strip()]\n    if not tokens:\n        return todas\n    # ids de los miembros (recursivo) de los assemblies que matchean el filtro\n    permitidos = set()\n    for ai in FilteredElementCollector(doc).OfClass(AssemblyInstance):\n        try:\n            nombre = ai.AssemblyTypeName\n        except Exception:\n            continue\n        if not any(tok in nombre.lower() for tok in tokens):\n            continue\n        stack = list(ai.GetMemberIds())\n        vistos = set()\n        while stack:\n            eid = stack.pop()\n            if eid.Value in vistos:\n                continue\n            vistos.add(eid.Value)\n            permitidos.add(eid.Value)\n            el = doc.GetElement(eid)\n            if isinstance(el, FamilyInstance):\n                try:\n                    for s in el.GetSubComponentIds():\n                        stack.append(s)\n                except Exception:\n                    pass\n    res = []\n    for r in todas:\n        if r.Id.Value in permitidos:\n            res.append(r)\n            continue\n        try:\n            hid = r.GetHostId()\n        except Exception:\n            hid = None\n        if hid is not None and hid.Value in permitidos:\n            res.append(r)\n    return res\n\n\ndef buscar_vista(nombre_vista):\n    # Busqueda TOLERANTE del nombre: las vistas 3D de Revit se llaman\n    # \"{3D - usuario.apellidoXXXXX}\" (con llaves y el usuario), imposible de tipear de\n    # memoria - con match exacto no encontraba nada y no pintaba en silencio. Primero\n    # exacto; si no, coincidencia parcial siempre que sea UNA sola.\n    objetivo = nombre_vista.strip().lower()\n    candidatas = [v for v in FilteredElementCollector(doc).OfClass(View) if not v.IsTemplate]\n    vista = next((v for v in candidatas if elem_name(v).strip().lower() == objetivo), None)\n    if vista is not None:\n        return vista\n    parciales = [v for v in candidatas if objetivo in elem_name(v).strip().lower()]\n    # Descartar las vistas derivadas que genera este mismo script: si no, despues de la\n    # primera corrida hay dos vistas que contienen el texto buscado y el match parcial se\n    # bloqueaba, dejando de pintar (bug real 2026-07-21).\n    propias = [v for v in parciales\n               if not elem_name(v).lower().startswith(NOMBRE_VISTA_PENDIENTES.lower())]\n    if propias:\n        parciales = propias\n    if len(parciales) == 1:\n        log.append(\u0027Vista \"{}\" resuelta por coincidencia parcial -\u003e \"{}\".\u0027.format(\n            nombre_vista, elem_name(parciales[0])))\n        return parciales[0]\n    if len(parciales) \u003e 1:\n        # NUNCA bloquearse por ambiguedad: se elige de forma determinista la de nombre mas\n        # corto (normalmente la vista base; las derivadas traen sufijos como \" Copy 1\") y\n        # se avisa cual se uso, para que el usuario corrija el input si no era esa.\n        elegida = min(parciales, key=lambda v: len(elem_name(v)))\n        log.append(\u0027AVISO: \"{}\" coincide con {} vistas ({}); se usa la de nombre mas corto: \"{}\".\u0027.format(\n            nombre_vista, len(parciales),\n            \u0027, \u0027.join(elem_name(v) for v in parciales[:6]), elem_name(elegida)))\n        return elegida\n    log.append(\u0027AVISO: no existe la vista \"{}\". Vistas 3D disponibles: {}\u0027.format(\n        nombre_vista,\n        \u0027, \u0027.join(sorted(elem_name(v) for v in candidatas if str(v.ViewType) == \u0027ThreeD\u0027)[:15])))\n    return None\n\n\ndef patron_solido():\n    # se busca por la propiedad IsSolidFill y NO por el nombre (\"Solid fill\" / \"Solido\"),\n    # que depende del idioma de Revit.\n    for fp in FilteredElementCollector(doc).OfClass(FillPatternElement):\n        try:\n            if fp.GetFillPattern().IsSolidFill:\n                return fp.Id\n        except Exception:\n            continue\n    return None\n\n\ndef override_color(rgb, id_solido):\n    cr, cg, cb = rgb\n    col = Color(cr, cg, cb)\n    ogs = OverrideGraphicSettings()\n    ogs.SetProjectionLineColor(col)\n    ogs.SetCutLineColor(col)\n    # relleno SOLIDO: hay que asignar el PATRON ademas del color, si no la barra queda\n    # pintada solo en sus lineas y sin relleno.\n    if id_solido is not None:\n        ogs.SetSurfaceForegroundPatternId(id_solido)\n        ogs.SetSurfaceForegroundPatternVisible(True)\n        ogs.SetCutForegroundPatternId(id_solido)\n        ogs.SetCutForegroundPatternVisible(True)\n    ogs.SetSurfaceForegroundPatternColor(col)\n    ogs.SetCutForegroundPatternColor(col)\n    return ogs\n\n\ndef pintar_por_partition(vista, barras):\n    # Pinta SOLO las barras que TIENEN Partition, con el color de SU valor REAL. Las que\n    # no lo tienen quedan explicitamente SIN color (se limpia cualquier override de una\n    # corrida anterior) para que salten a la vista como pendientes.\n    # 2026-07-21, correccion pedida por Javier: antes se pintaba la clasificacion\n    # CALCULADA de todas las barras, y asi no se distinguia lo que ya estaba resuelto de\n    # lo que faltaba - el color debe reflejar el estado REAL del modelo.\n    # Devuelve (pintadas, ids_sin_partition, valores_desconocidos).\n    id_solido = patron_solido()\n    if id_solido is None:\n        log.append(\u0027AVISO: no se encontro un patron solido; se pintan solo las lineas.\u0027)\n    cache = {}\n    vacio = OverrideGraphicSettings()\n    pintadas = 0\n    sin_part = []\n    con_part = []\n    desconocidos = {}\n    for r in barras:\n        valor = (leer_partition(r) or \u0027\u0027).strip().upper()\n        if not valor or valor not in COLORES:\n            if valor:\n                # tiene Partition pero con un valor fuera de la paleta: NO es pendiente\n                desconocidos[valor] = desconocidos.get(valor, 0) + 1\n                con_part.append(r.Id)\n            else:\n                sin_part.append(r.Id)\n            try:\n                vista.SetElementOverrides(r.Id, vacio)\n            except Exception:\n                pass\n            continue\n        con_part.append(r.Id)\n        if valor not in cache:\n            cache[valor] = override_color(COLORES[valor], id_solido)\n        try:\n            vista.SetElementOverrides(r.Id, cache[valor])\n            pintadas += 1\n        except Exception as e:\n            log.append(\u0027ERROR pintando la barra {}: {}\u0027.format(r.Id.Value, e))\n    return pintadas, sin_part, con_part, desconocidos\n\n\ndef vista_sin_partition(vista_base, ids_sin, ids_con):\n    # Segunda vista 3D donde quedan visibles SOLO las barras sin Partition (las pendientes).\n    # Se ocultan PERMANENTEMENTE (View.HideElements) las barras que si lo tienen.\n    # 2026-07-21: la 1a version usaba IsolateElementsTemporary (el \"Isolate Element\" de la\n    # UI), pero ese es un modo de vista TEMPORAL - un estado de interfaz que no persiste de\n    # forma confiable al aplicarse por API, y la vista salia mostrando todo. HideElements es\n    # permanente y se guarda con la vista.\n    nombre = NOMBRE_VISTA_PENDIENTES\n    destino = None\n    for v in FilteredElementCollector(doc).OfClass(View):\n        if not v.IsTemplate and elem_name(v) == nombre:\n            destino = v\n            break\n    if destino is None:\n        try:\n            nid = vista_base.Duplicate(ViewDuplicateOption.Duplicate)\n            destino = doc.GetElement(nid)\n        except Exception as e:\n            log.append(\u0027ERROR duplicando la vista para los pendientes: {}\u0027.format(e))\n            return None\n        # El renombrado se hace APARTE del Duplicate: si falla (nombre ocupado, caracteres\n        # invalidos) la vista duplicada igual ya existe, y si se abandona ahi queda suelta\n        # con el nombre por defecto \"... Copy 1\" -- que ademas ensucia el match parcial de\n        # buscar_vista. Por eso se reintenta con sufijo numerico hasta encontrar uno libre.\n        puesto = False\n        for k in range(0, 30):\n            try:\n                destino.Name = nombre if k == 0 else \u0027{} {}\u0027.format(nombre, k + 1)\n                puesto = True\n                break\n            except Exception:\n                continue\n        if not puesto:\n            # se borra la duplicada en vez de dejarla suelta con el nombre por defecto\n            # (\"... Copy 1\"): esos huerfanos se acumulan una por corrida y ensucian el\n            # modelo y la busqueda de vistas.\n            try:\n                doc.Delete(destino.Id)\n            except Exception:\n                pass\n            log.append(\u0027ERROR: no se pudo nombrar la vista de pendientes; se descarto la copia.\u0027)\n            return None\n    # limpiar el estado de corridas anteriores: si quedo un aislamiento temporal viejo, o\n    # barras ocultas que ahora SI deben verse, la vista mostraria algo desactualizado.\n    try:\n        if destino.IsTemporaryHideIsolateActive():\n            destino.DisableTemporaryViewMode(TemporaryViewMode.TemporaryHideIsolate)\n    except Exception:\n        pass\n    todas = List[ElementId]()\n    for i in ids_sin:\n        todas.Add(i)\n    for i in ids_con:\n        todas.Add(i)\n    if todas.Count \u003e 0:\n        try:\n            destino.UnhideElements(todas)\n        except Exception:\n            pass\n    ocultar = List[ElementId]()\n    for i in ids_con:\n        try:\n            el = doc.GetElement(i)\n            if el is not None and el.CanBeHidden(destino):\n                ocultar.Add(i)\n        except Exception:\n            continue\n    if ocultar.Count \u003e 0:\n        try:\n            destino.HideElements(ocultar)\n        except Exception as e:\n            log.append(\u0027ERROR ocultando las barras ya clasificadas en la vista de pendientes: {}\u0027.format(e))\n    return destino\n\n\nbarras = barras_objetivo()\nif not barras:\n    log.append(\u0027No se encontraron barras que procesar (filtro \"{}\").\u0027.format(filtro_txt))\n    OUT = log\nelse:\n    conteo = {}\n    motivos = {}\n    por_tipo = {}\n    sin_clasificar = 0\n    escritas = 0\n    ya_tenian = 0\n    aciertos = 0\n    fallos = 0\n    detalle_fallos = []\n\n    TransactionManager.Instance.EnsureInTransaction(doc)\n    try:\n        for r in barras:\n            tipo, motivo = clasificar(r)\n            if tipo is None:\n                sin_clasificar += 1\n                motivos[motivo] = motivos.get(motivo, 0) + 1\n                continue\n            conteo[tipo] = conteo.get(tipo, 0) + 1\n            por_tipo.setdefault(tipo, []).append(r.Id)\n            actual = leer_partition(r)\n\n            if solo_auditar:\n                # comparar contra el valor ya cargado (validacion de las reglas)\n                if actual:\n                    if actual.upper() == tipo:\n                        aciertos += 1\n                    else:\n                        fallos += 1\n                        if len(detalle_fallos) \u003c 40:\n                            detalle_fallos.append(\u0027  barra {}: real={} / calculado={} ({})\u0027.format(\n                                r.Id.Value, actual, tipo, motivo))\n                continue\n\n            # aplicar: solo RELLENA los vacios, no pisa lo ya cargado\n            if actual:\n                ya_tenian += 1\n                continue\n            p = param_partition(r)\n            if p is not None and not p.IsReadOnly:\n                try:\n                    p.Set(tipo)\n                    escritas += 1\n                except Exception as e:\n                    log.append(\u0027ERROR escribiendo Partition en la barra {}: {}\u0027.format(r.Id.Value, e))\n\n        aplicados_color = 0\n        ids_sin_part = []\n        if vista_colores:\n            v3d = buscar_vista(vista_colores)\n            if v3d is not None:\n                aplicados_color, ids_sin_part, ids_con_part, desconocidos = pintar_por_partition(v3d, barras)\n                log.append(\u0027Pintadas {} barras CON Partition en \"{}\"; {} quedaron SIN color (sin Partition).\u0027.format(\n                    aplicados_color, elem_name(v3d), len(ids_sin_part)))\n                for k in sorted(desconocidos.keys()):\n                    log.append(\u0027  AVISO: valor de Partition no reconocido \"{}\" en {} barra(s); quedan sin color.\u0027.format(\n                        k, desconocidos[k]))\n                if ids_sin_part:\n                    v2 = vista_sin_partition(v3d, ids_sin_part, ids_con_part)\n                    if v2 is not None:\n                        log.append(\u0027Vista de PENDIENTES: \"{}\" muestra solo las {} barras sin Partition ({} ya clasificadas ocultas).\u0027.format(\n                            elem_name(v2), len(ids_sin_part), len(ids_con_part)))\n                else:\n                    log.append(\u0027No quedaron barras sin Partition: no se creo vista de pendientes. \u0027\n                               \u0027(Si corriste en modo APLICAR, es esperable: el script acaba de rellenarlas todas; \u0027\n                               \u0027usa Solo AUDITAR para ver el estado real del modelo.)\u0027)\n        else:\n            log.append(\u0027(No se pinto nada: el input \"Vista 3D para pintar\" esta vacio.)\u0027)\n    finally:\n        TransactionManager.Instance.TransactionTaskDone()\n\n    if solo_auditar:\n        total_comparadas = aciertos + fallos\n        pct = (100.0 * aciertos / total_comparadas) if total_comparadas else 0.0\n        log.append(\u0027=== MODO AUDITORIA (no se escribio nada) ===\u0027)\n        log.append(\u0027Barras evaluadas: {} | con Partition ya cargado (comparables): {}\u0027.format(len(barras), total_comparadas))\n        if total_comparadas == 0:\n            log.append(\u0027OJO: ninguna barra de este modelo tiene Partition cargado, asi que no hay contra que\u0027)\n            log.append(\u0027comparar y la auditoria no aplica. La clasificacion SI se calculo (ver el resumen de mas\u0027)\n            log.append(\u0027abajo), pero no se escribio nada. Para asignarla de verdad, corre con \"Solo AUDITAR\" en False.\u0027)\n        else:\n            log.append(\u0027ACIERTOS: {} / {}  ({:.1f}%)   FALLOS: {}\u0027.format(aciertos, total_comparadas, pct, fallos))\n        if detalle_fallos:\n            log.append(\u0027--- primeros fallos ---\u0027)\n            log.extend(detalle_fallos)\n    else:\n        log.append(\u0027=== APLICADO ===\u0027)\n        log.append(\u0027Partition escritos: {} | ya tenian valor (no se pisaron): {}\u0027.format(escritas, ya_tenian))\n    log.append(\u0027Sin clasificar: {}\u0027.format(sin_clasificar))\n    if motivos:\n        log.append(\u0027--- por que quedaron sin clasificar ---\u0027)\n        for m in sorted(motivos.keys(), key=lambda k: -motivos[k]):\n            log.append(\u0027  {}: {}\u0027.format(m, motivos[m]))\n    log.append(\u0027--- clasificacion obtenida ---\u0027)\n    for k in sorted(conteo.keys()):\n        log.append(\u0027  {}: {}\u0027.format(k, conteo[k]))\n    OUT = log\n",
+                      "Engine":  "PythonNet3",
+                      "VariableInputPorts":  true,
+                      "Id":  "a4010000000000000000000000000001",
+                      "NodeType":  "PythonScriptNode",
+                      "Inputs":  [
+                                     {
+                                         "Id":  "a4010000000000000000000000000002",
+                                         "Name":  "IN[0]",
+                                         "Description":  "Input #0",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     },
+                                     {
+                                         "Id":  "a4010000000000000000000000000003",
+                                         "Name":  "IN[1]",
+                                         "Description":  "Input #1",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     },
+                                     {
+                                         "Id":  "a4010000000000000000000000000004",
+                                         "Name":  "IN[2]",
+                                         "Description":  "Input #2",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     },
+                                     {
+                                         "Id":  "a4010000000000000000000000000006",
+                                         "Name":  "IN[3]",
+                                         "Description":  "Input #3",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     },
+                                     {
+                                         "Id":  "a4010000000000000000000000000007",
+                                         "Name":  "IN[4]",
+                                         "Description":  "Input #4",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     },
+                                     {
+                                         "Id":  "a4010000000000000000000000000008",
+                                         "Name":  "IN[5]",
+                                         "Description":  "Input #5",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     }
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "a4010000000000000000000000000005",
+                                          "Name":  "OUT",
+                                          "Description":  "Result of the python script",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Runs an embedded Python script."
+                  },
+                  {
+                      "ConcreteType":  "CoreNodeModels.Watch, CoreNodeModels",
+                      "WatchWidth":  620.0,
+                      "WatchHeight":  400.0,
+                      "Id":  "c4010000000000000000000000000001",
+                      "NodeType":  "ExtensionNode",
+                      "Inputs":  [
+                                     {
+                                         "Id":  "c4010000000000000000000000000002",
+                                         "Name":  "",
+                                         "Description":  "Node to show output from",
+                                         "UsingDefaultValue":  false,
+                                         "Level":  2,
+                                         "UseLevels":  false,
+                                         "KeepListStructure":  false
+                                     }
+                                 ],
+                      "Outputs":  [
+                                      {
+                                          "Id":  "c4010000000000000000000000000003",
+                                          "Name":  "",
+                                          "Description":  "Node output",
+                                          "UsingDefaultValue":  false,
+                                          "Level":  2,
+                                          "UseLevels":  false,
+                                          "KeepListStructure":  false
+                                      }
+                                  ],
+                      "Replication":  "Disabled",
+                      "Description":  "Visualizes a node\u0027s output"
+                  }
+              ],
+    "Connectors":  [
+                       {
+                           "Start":  "b4010000000000000000000000000002",
+                           "End":  "a4010000000000000000000000000002",
+                           "Id":  "d4010000000000000000000000000001",
+                           "IsHidden":  "False"
+                       },
+                       {
+                           "Start":  "b4020000000000000000000000000002",
+                           "End":  "a4010000000000000000000000000003",
+                           "Id":  "d4010000000000000000000000000002",
+                           "IsHidden":  "False"
+                       },
+                       {
+                           "Start":  "b4030000000000000000000000000002",
+                           "End":  "a4010000000000000000000000000004",
+                           "Id":  "d4010000000000000000000000000003",
+                           "IsHidden":  "False"
+                       },
+                       {
+                           "Start":  "b4040000000000000000000000000002",
+                           "End":  "a4010000000000000000000000000006",
+                           "Id":  "d4010000000000000000000000000005",
+                           "IsHidden":  "False"
+                       },
+                       {
+                           "Start":  "b4050000000000000000000000000002",
+                           "End":  "a4010000000000000000000000000007",
+                           "Id":  "d4010000000000000000000000000006",
+                           "IsHidden":  "False"
+                       },
+                       {
+                           "Start":  "b4060000000000000000000000000002",
+                           "End":  "a4010000000000000000000000000008",
+                           "Id":  "d4010000000000000000000000000007",
+                           "IsHidden":  "False"
+                       },
+                       {
+                           "Start":  "a4010000000000000000000000000005",
+                           "End":  "c4010000000000000000000000000002",
+                           "Id":  "d4010000000000000000000000000004",
+                           "IsHidden":  "False"
+                       }
+                   ],
+    "Dependencies":  [
+
+                     ],
+    "NodeLibraryDependencies":  [
+
+                                ],
+    "EnableLegacyPolyCurveBehavior":  false,
+    "Thumbnail":  "",
+    "GraphDocumentationURL":  null,
+    "ExtensionWorkspaceData":  [
+                                   {
+                                       "ExtensionGuid":  "28992e1d-abb9-417f-8b1b-05e053bee670",
+                                       "Name":  "Properties",
+                                       "Version":  "4.0",
+                                       "Data":  {
+
+                                                }
+                                   },
+                                   {
+                                       "ExtensionGuid":  "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+                                       "Name":  "Generative Design",
+                                       "Version":  "10.3",
+                                       "Data":  {
+
+                                                }
+                                   }
+                               ],
+    "Author":  "",
+    "Linting":  {
+                    "activeLinter":  "None",
+                    "activeLinterId":  "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+                    "warningCount":  0,
+                    "errorCount":  0
+                },
+    "Bindings":  [
+
+                 ],
+    "View":  {
+                 "Dynamo":  {
+                                "ScaleFactor":  1.0,
+                                "HasRunWithoutCrash":  true,
+                                "IsVisibleInDynamoLibrary":  true,
+                                "Version":  "4.0.2.3852",
+                                "RunType":  "Manual",
+                                "RunPeriod":  "1000"
+                            },
+                 "Camera":  {
+                                "Name":  "_Background Preview",
+                                "EyeX":  -17.0,
+                                "EyeY":  24.0,
+                                "EyeZ":  50.0,
+                                "LookX":  12.0,
+                                "LookY":  -13.0,
+                                "LookZ":  -58.0,
+                                "UpX":  0.0,
+                                "UpY":  1.0,
+                                "UpZ":  0.0
+                            },
+                 "ConnectorPins":  [
+
+                                   ],
+                 "NodeViews":  [
+                                   {
+                                       "Id":  "b4010000000000000000000000000001",
+                                       "Name":  "Procesar TODOS los assemblies",
+                                       "IsSetAsInput":  true,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  -326.6970565400509,
+                                       "Y":  -16.658773421305682
+                                   },
+                                   {
+                                       "Id":  "b4020000000000000000000000000001",
+                                       "Name":  "Filtro por nombre (si TODOS = False)",
+                                       "IsSetAsInput":  true,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  -326.6970565400509,
+                                       "Y":  113.34122657869432
+                                   },
+                                   {
+                                       "Id":  "b4030000000000000000000000000001",
+                                       "Name":  "Separacion cota general (mm) - por FUERA de la cadena",
+                                       "IsSetAsInput":  true,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  88.55999019316437,
+                                       "Y":  118.68086671303558
+                                   },
+                                   {
+                                       "Id":  "b4040000000000000000000000000001",
+                                       "Name":  "Filtro material cortes (vacio = todos)",
+                                       "IsSetAsInput":  true,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  86.67573508267174,
+                                       "Y":  -39.610165192371824
+                                   },
+                                   {
+                                       "Id":  "b4050000000000000000000000000001",
+                                       "Name":  "Sep. tags corte al borde (mm)",
+                                       "IsSetAsInput":  true,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  88.55999019316437,
+                                       "Y":  260.0
+                                   },
+                                   {
+                                       "Id":  "b4060000000000000000000000000001",
+                                       "Name":  "Sep. entre tags corte (mm)",
+                                       "IsSetAsInput":  true,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  88.55999019316437,
+                                       "Y":  400.0
+                                   },
+                                   {
+                                       "Id":  "a4010000000000000000000000000001",
+                                       "Name":  "PY | Clasificar y asignar Partition",
+                                       "IsSetAsInput":  false,
+                                       "IsSetAsOutput":  false,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  685.3838070437214,
+                                       "Y":  -7.402541298092842
+                                   },
+                                   {
+                                       "Id":  "c4010000000000000000000000000001",
+                                       "Name":  "Log",
+                                       "IsSetAsInput":  false,
+                                       "IsSetAsOutput":  true,
+                                       "Excluded":  false,
+                                       "ShowGeometry":  true,
+                                       "X":  1132.2750703051329,
+                                       "Y":  -148.49054304957133
+                                   }
+                               ],
+                 "Annotations":  [
+                                     {
+                                         "Id":  "dad37cd2cd3f445c8cdc6bbe1435f74c",
+                                         "Title":  "Title \u003cDouble click here to edit group title\u003e",
+                                         "DescriptionText":  "Description \u003cDouble click here to edit group description\u003e",
+                                         "IsExpanded":  true,
+                                         "WidthAdjustment":  0.0,
+                                         "HeightAdjustment":  0.0,
+                                         "UserSetWidth":  0.0,
+                                         "UserSetHeight":  0.0,
+                                         "Nodes":  [
+                                                       "b4010000000000000000000000000001",
+                                                       "b4020000000000000000000000000001"
+                                                   ],
+                                         "HasNestedGroups":  false,
+                                         "Left":  -336.6970565400509,
+                                         "Top":  -175.45877342130566,
+                                         "Width":  366.4,
+                                         "Height":  419.0,
+                                         "FontSize":  36.0,
+                                         "GroupStyleId":  "00000000-0000-0000-0000-000000000000",
+                                         "InitialTop":  -16.658773421305682,
+                                         "InitialHeight":  275.0,
+                                         "TextblockHeight":  148.79999999999998,
+                                         "IsOptionalInPortsCollapsed":  false,
+                                         "IsUnconnectedOutPortsCollapsed":  false,
+                                         "HasToggledOptionalInPorts":  false,
+                                         "HasToggledUnconnectedOutPorts":  false,
+                                         "Background":  "#FFC1D676"
+                                     },
+                                     {
+                                         "Id":  "5faff8078e514ea7bc93f272c2b74238",
+                                         "Title":  "Title \u003cDouble click here to edit group title\u003e",
+                                         "DescriptionText":  "Description \u003cDouble click here to edit group description\u003e",
+                                         "IsExpanded":  true,
+                                         "WidthAdjustment":  0.0,
+                                         "HeightAdjustment":  0.0,
+                                         "UserSetWidth":  0.0,
+                                         "UserSetHeight":  0.0,
+                                         "Nodes":  [
+                                                       "b4030000000000000000000000000001",
+                                                       "b4040000000000000000000000000001"
+                                                   ],
+                                         "HasNestedGroups":  false,
+                                         "Left":  76.67573508267174,
+                                         "Top":  -155.21016519237182,
+                                         "Width":  513.8842551104926,
+                                         "Height":  404.09103190540736,
+                                         "FontSize":  36.0,
+                                         "GroupStyleId":  "00000000-0000-0000-0000-000000000000",
+                                         "InitialTop":  -39.610165192371824,
+                                         "InitialHeight":  303.2910319054074,
+                                         "TextblockHeight":  105.6,
+                                         "IsOptionalInPortsCollapsed":  false,
+                                         "IsUnconnectedOutPortsCollapsed":  false,
+                                         "HasToggledOptionalInPorts":  false,
+                                         "HasToggledUnconnectedOutPorts":  false,
+                                         "Background":  "#FFC1D676"
+                                     }
+                                 ],
+                 "X":  360.3227794935953,
+                 "Y":  222.79206355108266,
+                 "Zoom":  1.1211366036702803
+             }
+}

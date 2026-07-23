@@ -1,7 +1,7 @@
 {
   "Uuid": "8f4c1a2e-0a11-4b6e-9c01-aa0000000003",
   "IsCustomNode": false,
-  "Description": "ARMADURAS - Por assembly: crea un set de vistas PARALELO al de la rutina de Formas, con sufijo ' - ARMADURA' (planta 'FN-1001 - ARMADURA', cortes 'FN-1001 - ARMADURA - CORTE A/B'): las vistas de Formas NO se tocan. Aplica el view template ARMADURA PLANTA DYN, marca las barras como Unobscured en cada vista, aplica el modo de presentacion 'First and Last' (Rebar.SetPresentationMode) a los sets con varias barras SOLO en la planta, si el assembly tiene 2+ pedestales (cualquier familia con 'Pedestal' en el nombre) oculta explicitamente (View.HideElements) en la planta TODAS las barras de TODOS sus pedestales (host o ancestro via SuperComponent), y oculta los marcadores de seccion cruzados entre ambos sets. Escala automatica (>2 m -> 1:50, si no 1:25). Idempotente.",
+  "Description": "PASO 1 de 5 - Crea las vistas de cada assembly: planta, cortes A y B, y un callout por cada tipo de pedestal. Les aplica template y escala automatica, y deja la armadura visible. Correr siempre primero: los demas pasos trabajan sobre estas vistas.",
   "Name": "00_Vistas de assembly",
   "ElementResolver": {
     "ResolutionMap": {}

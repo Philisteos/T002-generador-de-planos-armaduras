@@ -1,0 +1,612 @@
+{
+  "Uuid": "8f4c1a2e-0a11-4b6e-9c01-aa0000000009",
+  "IsCustomNode": false,
+  "Description": "PASO 5 de 5 - Crea en cada lamina la tabla de despiece de armaduras: una fila por marca, agrupada por fundacion, con diametro, cantidad, largos y pesos. Requiere los pasos 1 a 3.",
+  "Name": "04_Tabla de assemblies",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "b6010000000000000000000000000001",
+      "Name": "Sheets destino (numeros con coma, o prefijo)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "b6020000000000000000000000000001",
+      "Name": "Margen (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "20",
+      "MaximumValue": 50.0,
+      "MinimumValue": 5.0,
+      "StepValue": 1.0,
+      "NumberType": "Integer",
+      "Description": "Produces integer values"
+    },
+    {
+      "Id": "b6030000000000000000000000000001",
+      "Name": "Reserva lado derecho (mm)",
+      "Type": "number",
+      "Type2": "number",
+      "Value": "150",
+      "MaximumValue": 200.0,
+      "MinimumValue": 0.0,
+      "StepValue": 5.0,
+      "NumberType": "Integer",
+      "Description": "Produces integer values"
+    },
+    {
+      "Id": "b6040000000000000000000000000001",
+      "Name": "Estilo de linea (grid/outline)",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "LÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­neas Tablas Finas",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "b6050000000000000000000000000001",
+      "Name": "Tipo de texto encabezados",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "C_TXT_RomanD2.3mm",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "b6060000000000000000000000000001",
+      "Name": "Tipo de texto cuerpo",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "C_TXT_RomanD2.3mm_Negrita",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "b6070000000000000000000000000001",
+      "Name": "Titulo de la tabla",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "",
+      "Description": "Creates a string."
+    },
+    {
+      "Id": "b6080000000000000000000000000001",
+      "Name": "View template para las tablas",
+      "Type": "string",
+      "Type2": "string",
+      "Value": "TABLA_TIPO",
+      "Description": "Creates a string."
+    }
+  ],
+  "Outputs": [
+    {
+      "Id": "c6010000000000000000000000000001",
+      "Name": "Log",
+      "Type": "unknown",
+      "InitialValue": "",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b6010000000000000000000000000001",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6010000000000000000000000000002",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 50,
+      "MinimumValue": 5,
+      "StepValue": 1,
+      "Id": "b6020000000000000000000000000001",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6020000000000000000000000000002",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 20
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NumberType": "Integer",
+      "MaximumValue": 200,
+      "MinimumValue": 0,
+      "StepValue": 5,
+      "Id": "b6030000000000000000000000000001",
+      "NodeType": "NumberInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6030000000000000000000000000002",
+          "Name": "",
+          "Description": "Int64",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Produces integer values",
+      "InputValue": 150
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b6040000000000000000000000000001",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6040000000000000000000000000002",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "LÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â­neas Tablas Finas"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b6050000000000000000000000000001",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6050000000000000000000000000002",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "C_TXT_RomanD2.3mm"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b6060000000000000000000000000001",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6060000000000000000000000000002",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "C_TXT_RomanD2.3mm_Negrita"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b6070000000000000000000000000001",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6070000000000000000000000000002",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "SerializedWidth": 0.0,
+      "SerializedHeight": 0.0,
+      "Id": "b6080000000000000000000000000001",
+      "NodeType": "StringInputNode",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b6080000000000000000000000000002",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string.",
+      "InputValue": "TABLA_TIPO"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "Code": "# 06_Tabla de assemblies - Crea, por cada sheet destino, un schedule nativo de Revit\n# de categoria STRUCTURAL REBAR con la tabla de despiece de armaduras de los assemblies\n# documentados en ESE sheet. Estructura (igual que la planilla a mano de referencia):\n#   Encabezado nivel 1 = nombre del assembly (\"FUNDACION FN-1001\", de ELEMENTO_TBL)\n#   Encabezado nivel 2 = \"CANT=N\" (cantidad de instancias de ese tipo de fundacion)\n#   Una fila por MARCA (ITEM_TBL) con: TIPO / Diametro / CANTIDAD TOTAL BARRAS /\n#   A..F (mm) / UNIT (m) / TOTAL (m) / PESO UNITARIO (Kg) / PESO TOTAL (Kg) / OBSERVACION.\n#\n# Reglas de negocio (definidas por el usuario, confirmadas contra el modelo real):\n# - Solo se consideran BARRAS (elementos nativos Structural Rebar). Nada de hormigones ni\n#   pernos (eso era la version anterior de esta tabla, multi-categoria).\n# - Las barras se agrupan por ASSEMBLY (una tabla por sheet, un bloque por tipo de\n#   fundacion documentado en ese sheet) y dentro por MARCA = ITEM_TBL.\n# - MARCA = ITEM_TBL ; TIPO = nombre de la RebarShape (ej. \"TIPO-3\") ; Diametro (mm) =\n#   Bar Diameter ; A..F (mm) = parametros compartidos A..F de la barra.\n# - CANTIDAD TOTAL BARRAS = suma de 'Quantity' (nro de barras del set) de todas las barras\n#   con la misma MARCA dentro del assembly.\n# - UNIT (m) = largo desarrollado de UNA barra = A+B+C+D+E+F (LONG_TOTAL_UNITARIA).\n# - TOTAL (m) = suma sobre las barras de la marca de (UNIT_barra x Quantity_barra).\n# - PESO UNITARIO (Kg) = Diam_mm^2 * (0.617/100) * UNIT (peso de UNA barra).\n# - PESO TOTAL (Kg) = suma sobre las barras de la marca de (peso_unit_barra x Quantity).\n# - OBSERVACION = parametro Comments de la barra.\n# - Cuando un campo (A..F, UNIT, Diametro, TIPO, peso unit) DIFIERE entre las barras de\n#   una misma marca, la celda muestra \"<varies>\" (como la planilla de referencia).\n#\n# Mecanica (heredada de la version anterior de este graph):\n# - Todos los valores mostrados se PRECALCULAN en Python y se escriben como parametros\n#   compartidos en cada barra; el schedule (IsItemized=False) agrupa y colapsa una fila\n#   por marca. Se precalcula porque no existe un campo nativo confiable que de estos\n#   valores por marca (misma decision que ya tomo el 06 con la columna TOTAL).\n# - Se REUSAN los compartidos ya existentes: ITEM_TBL (MARCA), A..F, ELEMENTO_TBL (texto\n#   del encabezado de assembly) y SHEET_ARMADURAS (filtro PROPIO de ARMADURAS - NO se usa\n#   Comments, que es el filtro de las tablas de la rutina de Formas sobre los MISMOS\n#   elementos fisicos). Se CREAN los compartidos de despiece ARM_* (grupo ARMADURAS_TABLA,\n#   enlazados a la categoria Structural Rebar) para las columnas calculadas.\n# - Asociacion barra -> assembly: se recorren los miembros (recursivo) de la PRIMERA\n#   instancia de cada tipo que TENGA barras, y se toma toda barra que sea miembro directo\n#   o este alojada (GetHostId) en un miembro. Asi se documenta un solo representante por\n#   tipo (misma convencion del resto del pipeline) y el CANT=N multiplica aparte.\n#\n# LIMITACION CONOCIDA: las filas de SUBTOTAL por fundacion de la planilla a mano (suma de\n# cantidad / TOTAL(m) / peso) NO se generan: un campo de schedule nativo no puede a la vez\n# mostrar el valor por-marca colapsado y sumarse en un pie de grupo. Queda pendiente.\n#\n# Revit 2027 / Dynamo 4 / CPython3\n# IN[0] = sheets destino: numeros separados por coma, o un prefijo comun\n# IN[1] = margen (mm), misma convencion que 01/02\n# IN[2] = reserva lado derecho (mm) - debe coincidir con 01 y 02\n# IN[3] = nombre del estilo de linea para grid/outline del schedule (vacio = no tocar)\n# IN[4] = nombre del tipo de texto para encabezados (vacio = no tocar)\n# IN[5] = nombre del tipo de texto para el cuerpo (vacio = no tocar)\n# IN[6] = titulo de la tabla (se aplica a TODAS las tablas creadas; vacio = titulo en blanco)\n# IN[7] = nombre del view template para las tablas (default \"TABLA_TIPO\"; vacio = no aplicar)\n\nimport clr\nclr.AddReference('RevitAPI')\nclr.AddReference('RevitServices')\nfrom Autodesk.Revit.DB import (FilteredElementCollector, AssemblyInstance, ViewSheet,\n                               ScheduleSheetInstance, ViewSchedule, ScheduleFilter,\n                               ScheduleFilterType, ScheduleSortGroupField, BuiltInCategory,\n                               BuiltInParameter, ElementId, XYZ, Element, TextNoteType,\n                               GraphicsStyle, StorageType, FamilyInstance, SharedParameterElement,\n                               ParameterFilterRuleFactory, ElementParameterFilter,\n                               ExternalDefinitionCreationOptions, SpecTypeId, CategoryType, GroupTypeId)\nfrom Autodesk.Revit.DB.Structure import Rebar\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System import Guid\nimport os\nimport tempfile\n\ndoc = DocumentManager.Instance.CurrentDBDocument\n\nsheets_text = (IN[0] or '').strip()\nmargin = float(IN[1]) / 304.8\nright_reserve = float(IN[2]) / 304.8\ngrid_style_name = (IN[3] or '').strip()\nheader_text_name = (IN[4] or '').strip()\nbody_text_name = (IN[5] or '').strip()\ntitulo_tabla = (IN[6] or '').strip()\ntemplate_nombre = (IN[7] or '').strip()\n\n# --- GUIDs de parametros compartidos YA EXISTENTES en el proyecto ---\nGUID_ITEM = Guid('48cfe67b-4544-4f71-bd75-e46767622ddd')      # ITEM_TBL  -> MARCA\nGUID_ELEMENTO_TBL = Guid('433e7c25-aa15-4380-9474-c6dffa787fa2')  # ELEMENTO_TBL -> \"FUNDACION FN-xxxx\"\nGUID_A = Guid('834200b7-07e9-4677-a81a-44dc862ff50b')\nGUID_B = Guid('e0d9703a-2ca6-44f8-8ca6-ce70571458d7')\nGUID_C = Guid('4aad6aab-b0e9-4528-bfa3-eeb96adaead0')\nGUID_D = Guid('e70a9408-6d69-44f5-848d-f5ba4cb037e5')\nGUID_E = Guid('74e389d7-fb43-471a-8f8d-830bf717db8e')\nGUID_F = Guid('60bd0376-836e-484f-89d4-d8fb8d985f34')\nGUIDS_AF = [GUID_A, GUID_B, GUID_C, GUID_D, GUID_E, GUID_F]\n\nSUFIJO_ARMADURAS = ' - ARMADURA'\nNOMBRE_PARAM_SHEET_ARM = 'SHEET_ARMADURAS'\nPREFIJO_SCHEDULE = 'TBL_ARMADURAS_'\nREBAR_CAT_ID = ElementId(BuiltInCategory.OST_Rebar)\nPESO_K = 0.617 / 100.0  # kg/m = Diam_mm^2 * K  (formula del usuario)\n\n# parametros ARM_* que se crean (grupo ARMADURAS_TABLA, texto, instancia, categoria Rebar).\n# El orden aca no importa; el orden de columnas se define mas abajo.\nNOMBRES_ARM = ['ARM_L1', 'ARM_L2', 'ARM_TIPO', 'ARM_DIAM', 'ARM_CANT',\n               'ARM_A', 'ARM_B', 'ARM_C', 'ARM_D', 'ARM_E', 'ARM_F',\n               'ARM_UNIT', 'ARM_TOTAL', 'ARM_PESO_U', 'ARM_PESO_T', 'ARM_OBS']\n\n# ancho de columna: mismo enfoque que la version anterior (ancho fijo generoso por\n# caracter del texto mas largo de cada columna; se escala si la suma pasa la reserva).\nANCHO_POR_CARACTER_MM = 2.5\nANCHO_COL_MINIMO = 10.0 / 304.8\n\nlog = []\n\n\ndef elem_name(e):\n    try:\n        return e.Name\n    except Exception:\n        return Element.Name.__get__(e)\n\n\ndef formato_2dec(n):\n    # 2 decimales fijos con coma (convencion chilena), ej. 5,30 / 120,00\n    return ('{:.2f}'.format(n)).replace('.', ',')\n\n\ndef as_str(p):\n    if p is None:\n        return ''\n    try:\n        return p.AsString() or ''\n    except Exception:\n        return ''\n\n\ndef as_dbl(p):\n    if p is None:\n        return 0.0\n    try:\n        return p.AsDouble()\n    except Exception:\n        return 0.0\n\n\n# --- lectura de datos de una barra ---\ndef rebar_marca(r):\n    return as_str(r.get_Parameter(GUID_ITEM)).strip()\n\n\ndef rebar_elemento(r):\n    return as_str(r.get_Parameter(GUID_ELEMENTO_TBL)).strip()\n\n\ndef rebar_tipo(r):\n    # nombre de la RebarShape (ej. \"TIPO-3\"); fallback al parametro 'Shape Name'\n    try:\n        sh = doc.GetElement(r.GetShapeId())\n        if sh is not None:\n            return elem_name(sh)\n    except Exception:\n        pass\n    p = r.LookupParameter('Shape Name')\n    return as_str(p)\n\n\ndef rebar_diam_mm(r):\n    p = r.get_Parameter(BuiltInParameter.REBAR_BAR_DIAMETER)\n    if p is None:\n        p = r.LookupParameter('Bar Diameter')\n    return as_dbl(p) * 304.8\n\n\ndef rebar_quantity(r):\n    try:\n        return int(r.Quantity)\n    except Exception:\n        p = r.LookupParameter('Quantity')\n        try:\n            return int(p.AsInteger()) if p is not None else 0\n        except Exception:\n            return 0\n\n\ndef rebar_af_mm(r):\n    # los 6 tramos A..F en mm (0 si el parametro no aplica a esa forma)\n    return [as_dbl(r.get_Parameter(g)) * 304.8 for g in GUIDS_AF]\n\n\ndef rebar_obs(r):\n    return as_str(r.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS)).strip()\n\n\n# --- sheets destino (misma logica que 02_Colocar vistas en laminas) ---\nall_sheets = {}\nfor s in FilteredElementCollector(doc).OfClass(ViewSheet):\n    all_sheets[s.SheetNumber] = s\n\ntarget_sheets = []\nseen = set()\nfor tok in [t.strip() for t in sheets_text.split(',') if t.strip()]:\n    if tok in all_sheets:\n        matches = [all_sheets[tok]]\n    else:\n        matches = [s for n, s in all_sheets.items() if n.startswith(tok)]\n    for s in matches:\n        if s.SheetNumber not in seen:\n            seen.add(s.SheetNumber)\n            target_sheets.append(s)\ntarget_sheets.sort(key=lambda s: s.SheetNumber)\n\nif not target_sheets:\n    log.append('ERROR: ningun sheet coincide con \"{}\".'.format(sheets_text))\n    log.append('Sheets del proyecto: ' + ', '.join(sorted(all_sheets.keys())[:30]))\n    OUT = log\nelse:\n    by_type = {}\n    for ai in FilteredElementCollector(doc).OfClass(AssemblyInstance):\n        by_type.setdefault(ai.AssemblyTypeName, []).append(ai)\n\n    # cache de todas las barras del modelo con su host, para asociarlas a assemblies\n    todas_barras = list(FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Rebar)\n                        .WhereElementIsNotElementType().ToElements())\n    host_de_barra = {}\n    for r in todas_barras:\n        try:\n            hid = r.GetHostId()\n            host_de_barra[r.Id.Value] = hid.Value if hid is not None else None\n        except Exception:\n            host_de_barra[r.Id.Value] = None\n\n    def member_ids_recursivos(ai):\n        ids = set()\n        stack = list(ai.GetMemberIds())\n        while stack:\n            eid = stack.pop()\n            if eid.Value in ids:\n                continue\n            ids.add(eid.Value)\n            el = doc.GetElement(eid)\n            if isinstance(el, FamilyInstance):\n                try:\n                    for s in el.GetSubComponentIds():\n                        stack.append(s)\n                except Exception:\n                    pass\n        return ids\n\n    def barras_de_assembly(ai):\n        ids = member_ids_recursivos(ai)\n        res = []\n        for r in todas_barras:\n            if r.Id.Value in ids or host_de_barra.get(r.Id.Value) in ids:\n                res.append(r)\n        return res\n\n    def representante_con_barras(tname):\n        # primera instancia del tipo que tenga barras asociadas (si ninguna, la primera)\n        for cand in by_type.get(tname, []):\n            bs = barras_de_assembly(cand)\n            if bs:\n                return cand, bs\n        insts = by_type.get(tname, [])\n        return (insts[0], []) if insts else (None, [])\n\n    def usable_rect(sheet):\n        col = FilteredElementCollector(doc, sheet.Id).OfCategory(BuiltInCategory.OST_TitleBlocks)\n        tb = col.FirstElement()\n        if tb is not None:\n            bb = tb.get_BoundingBox(sheet)\n            if bb is not None:\n                return (bb.Min.X + margin, bb.Min.Y + margin,\n                        bb.Max.X - margin - right_reserve, bb.Max.Y - margin)\n        o = sheet.Outline\n        return (o.Min.U + margin, o.Min.V + margin,\n                o.Max.U - margin - right_reserve, o.Max.V - margin)\n\n    # --- que tipos de assembly hay colocados en cada sheet destino (solo plantas ARMADURA) ---\n    tipos_por_sheet = {}\n    for sh in target_sheets:\n        tipos = set()\n        for vpid in sh.GetAllViewports():\n            vp = doc.GetElement(vpid)\n            v = doc.GetElement(vp.ViewId)\n            n = elem_name(v)\n            if not n.endswith(SUFIJO_ARMADURAS):\n                continue\n            base = n[:-len(SUFIJO_ARMADURAS)]\n            if base in by_type:\n                tipos.add(base)\n        if tipos:\n            tipos_por_sheet[sh.SheetNumber] = (sh, tipos)\n\n    if not tipos_por_sheet:\n        log.append('Ningun sheet destino tiene plantas de assembly (ARMADURA) colocadas todavia.')\n        log.append('Corre 00 / 01 / 02 primero.')\n        OUT = log\n    else:\n        estilos_linea = list(FilteredElementCollector(doc).OfClass(GraphicsStyle))\n        tipos_texto = list(FilteredElementCollector(doc).OfClass(TextNoteType))\n\n        def buscar_por_nombre(coleccion, nombre, etiqueta):\n            if not nombre:\n                return None\n            low = nombre.lower()\n            for e in coleccion:\n                if elem_name(e).lower() == low:\n                    return e\n            log.append('AVISO: no se encontro {} \"{}\"; se deja el valor por defecto.'.format(etiqueta, nombre))\n            return None\n\n        estilo_grid = buscar_por_nombre(estilos_linea, grid_style_name, 'el estilo de linea')\n        tipo_header = buscar_por_nombre(tipos_texto, header_text_name, 'el tipo de texto de encabezados')\n        tipo_body = buscar_por_nombre(tipos_texto, body_text_name, 'el tipo de texto de cuerpo')\n\n        templates_schedule = [v for v in FilteredElementCollector(doc).OfClass(ViewSchedule) if v.IsTemplate]\n        template_tabla = None\n        if template_nombre:\n            low_t = template_nombre.lower()\n            template_tabla = next((v for v in templates_schedule if elem_name(v).lower() == low_t), None)\n            if template_tabla is None:\n                log.append('AVISO: no se encontro el view template de schedule \"{}\".'.format(template_nombre))\n\n        def buscar_parametro_fuzzy(el, nombre):\n            low = nombre.lower().strip()\n            try:\n                for p in el.Parameters:\n                    try:\n                        if p.Definition.Name.lower().strip() == low:\n                            return p\n                    except Exception:\n                        continue\n            except Exception:\n                pass\n            return None\n\n        def set_param_by_name(el, nombre, valor):\n            try:\n                p = buscar_parametro_fuzzy(el, nombre)\n                if p is None or p.IsReadOnly:\n                    return False\n                if p.StorageType == StorageType.ElementId:\n                    p.Set(valor.Id if hasattr(valor, 'Id') else valor)\n                elif p.StorageType == StorageType.Integer:\n                    p.Set(int(valor))\n                elif p.StorageType == StorageType.String:\n                    p.Set(str(valor))\n                else:\n                    return False\n                return True\n            except Exception:\n                return False\n\n        # --- bootstrap de parametros compartidos (SHEET_ARMADURAS + ARM_*) ---\n        guids_arm = {}   # nombre -> Guid\n        guid_sheet_arm = [None]  # lista para poder mutar desde funcion anidada\n\n        def cat_rebar():\n            try:\n                return doc.Settings.Categories.get_Item(BuiltInCategory.OST_Rebar)\n            except Exception:\n                return None\n\n        def asegurar_binding_rebar(definition):\n            # asegura que 'definition' este enlazada (instancia) a la categoria Rebar,\n            # preservando las categorias que ya tuviera (para SHEET_ARMADURAS, que ya\n            # existe enlazada a otras categorias de la corrida vieja).\n            app = doc.Application\n            rebar_c = cat_rebar()\n            if rebar_c is None:\n                return\n            bmap = doc.ParameterBindings\n            it = bmap.ForwardIterator()\n            it.Reset()\n            binding_existente = None\n            while it.MoveNext():\n                d = it.Key\n                if d is not None and d.Name == definition.Name:\n                    binding_existente = it.Current\n                    break\n            cats = app.Create.NewCategorySet()\n            ya = False\n            if binding_existente is not None:\n                for c in binding_existente.Categories:\n                    cats.Insert(c)\n                    if c.Id.Value == rebar_c.Id.Value:\n                        ya = True\n            if ya:\n                return\n            cats.Insert(rebar_c)\n            binding = app.Create.NewInstanceBinding(cats)\n            if binding_existente is not None:\n                bmap.ReInsert(definition, binding, GroupTypeId.Data)\n            else:\n                bmap.Insert(definition, binding, GroupTypeId.Data)\n\n        def asegurar_params():\n            # crea/ubica SHEET_ARMADURAS y los ARM_*; enlaza todos a la categoria Rebar.\n            app = doc.Application\n            old_file = app.SharedParametersFilename\n            tmp = os.path.join(tempfile.gettempdir(), 'bios_params_armaduras.txt')\n            if not os.path.exists(tmp):\n                f = open(tmp, 'w')\n                f.close()\n            app.SharedParametersFilename = tmp\n            try:\n                deffile = app.OpenSharedParameterFile()\n                grupo = None\n                for g in deffile.Groups:\n                    if g.Name == 'ARMADURAS':\n                        grupo = g\n                        break\n                if grupo is None:\n                    grupo = deffile.Groups.Create('ARMADURAS')\n\n                nombres = [NOMBRE_PARAM_SHEET_ARM] + NOMBRES_ARM\n                spe_por_nombre = {}\n                for spe in FilteredElementCollector(doc).OfClass(SharedParameterElement):\n                    spe_por_nombre[elem_name(spe)] = spe\n\n                for nombre in nombres:\n                    spe = spe_por_nombre.get(nombre)\n                    if spe is None:\n                        # aun no existe en el proyecto: definir en el archivo compartido y bindear\n                        definicion = grupo.Definitions.get_Item(nombre)\n                        if definicion is None:\n                            opts = ExternalDefinitionCreationOptions(nombre, SpecTypeId.String.Text)\n                            definicion = grupo.Definitions.Create(opts)\n                        rebar_c = cat_rebar()\n                        cats = app.Create.NewCategorySet()\n                        if rebar_c is not None:\n                            cats.Insert(rebar_c)\n                        binding = app.Create.NewInstanceBinding(cats)\n                        doc.ParameterBindings.Insert(definicion, binding, GroupTypeId.Data)\n                    else:\n                        # ya existe: solo asegurar que llegue a la categoria Rebar\n                        idef = None\n                        try:\n                            idef = spe.GetDefinition()\n                        except Exception:\n                            idef = None\n                        if idef is not None:\n                            asegurar_binding_rebar(idef)\n            finally:\n                app.SharedParametersFilename = old_file\n            doc.Regenerate()\n\n            # recolectar guids finales\n            for spe in FilteredElementCollector(doc).OfClass(SharedParameterElement):\n                nombre = elem_name(spe)\n                if nombre == NOMBRE_PARAM_SHEET_ARM:\n                    guid_sheet_arm[0] = spe.GuidValue\n                elif nombre in NOMBRES_ARM:\n                    guids_arm[nombre] = spe.GuidValue\n\n        # --- definicion de columnas: (clave, nombre_param_o_guid, encabezado) ---\n        # MARCA usa ITEM_TBL (ya existe); el resto usa los ARM_*.\n        COLS = [\n            ('marca', GUID_ITEM, 'MARCA'),\n            ('tipo', 'ARM_TIPO', 'TIPO'),\n            ('diam', 'ARM_DIAM', 'Diam (mm)'),\n            ('cant', 'ARM_CANT', 'CANTIDAD TOTAL BARRAS'),\n            ('a', 'ARM_A', 'A (mm)'),\n            ('b', 'ARM_B', 'B (mm)'),\n            ('c', 'ARM_C', 'C (mm)'),\n            ('d', 'ARM_D', 'D (mm)'),\n            ('e', 'ARM_E', 'E (mm)'),\n            ('f', 'ARM_F', 'F (mm)'),\n            ('unit', 'ARM_UNIT', 'UNIT. (m)'),\n            ('total', 'ARM_TOTAL', 'TOTAL (m)'),\n            ('peso_u', 'ARM_PESO_U', 'PESO UNIT. (Kg)'),\n            ('peso_t', 'ARM_PESO_T', 'PESO TOTAL (Kg)'),\n            ('obs', 'ARM_OBS', 'OBSERVACION'),\n        ]\n\n        def guid_de_col(ref):\n            return ref if isinstance(ref, Guid) else guids_arm.get(ref)\n\n        def campo_por_guid(schedulable, guid):\n            if guid is None:\n                return None\n            spe = SharedParameterElement.Lookup(doc, guid)\n            if spe is None:\n                return None\n            for f in schedulable:\n                if f.ParameterId == spe.Id:\n                    return f\n            return None\n\n        existing_schedules = {elem_name(v): v for v in FilteredElementCollector(doc).OfClass(ViewSchedule)}\n        existing_sheet_instances = {}\n        for ssi in FilteredElementCollector(doc).OfClass(ScheduleSheetInstance):\n            existing_sheet_instances.setdefault(ssi.OwnerViewId.Value, []).append(ssi)\n\n        def limpiar_definicion(definition):\n            while definition.GetSortGroupFieldCount() > 0:\n                definition.RemoveSortGroupField(0)\n            while definition.GetFilterCount() > 0:\n                definition.RemoveFilter(0)\n            for i in range(definition.GetFieldCount() - 1, -1, -1):\n                definition.RemoveField(definition.GetField(i).FieldId)\n\n        def texto_ancho_columna(textos):\n            candidatos = [t for t in textos if t]\n            if not candidatos:\n                return ANCHO_COL_MINIMO\n            max_texto = max(candidatos, key=len)\n            ancho = len(max_texto) * ANCHO_POR_CARACTER_MM / 304.8\n            return max(ancho, ANCHO_COL_MINIMO)\n\n        def anchos_desde_textos(textos_col):\n            ideal = {clave: texto_ancho_columna(textos) for clave, textos in textos_col.items()}\n            suma = sum(ideal.values())\n            if suma > right_reserve and suma > 0:\n                escala = right_reserve / suma\n                return {clave: v * escala for clave, v in ideal.items()}\n            return ideal\n\n        def configurar_schedule(sched, sheet_number, textos_col):\n            definition = sched.Definition\n            definition.IsItemized = False\n            limpiar_definicion(definition)\n            schedulable = list(definition.GetSchedulableFields())\n\n            # campos de agrupacion ocultos: ARM_L1 (assembly) y ARM_L2 (CANT), y filtro\n            campo_l1 = campo_por_guid(schedulable, guids_arm.get('ARM_L1'))\n            campo_l2 = campo_por_guid(schedulable, guids_arm.get('ARM_L2'))\n            campo_filtro = campo_por_guid(schedulable, guid_sheet_arm[0])\n\n            faltantes = []\n            if campo_l1 is None:\n                faltantes.append('ARM_L1')\n            if campo_l2 is None:\n                faltantes.append('ARM_L2')\n            if campo_filtro is None:\n                faltantes.append(NOMBRE_PARAM_SHEET_ARM)\n\n            campos_col = {}\n            for clave, ref, _hdr in COLS:\n                c = campo_por_guid(schedulable, guid_de_col(ref))\n                campos_col[clave] = c\n                if c is None:\n                    faltantes.append(clave)\n\n            if faltantes:\n                log.append('ERROR sheet {}: faltan campos en el schedule de barras: {}'.format(sheet_number, faltantes))\n                nombres = sorted(set(f.GetName(doc) for f in schedulable))\n                log.append('Campos disponibles (primeros 50): ' + ', '.join(nombres[:50]))\n                return False\n\n            # ARM_L1 y ARM_L2 primero, ocultos\n            f_l1 = definition.AddField(campo_l1)\n            f_l1.IsHidden = True\n            f_l2 = definition.AddField(campo_l2)\n            f_l2.IsHidden = True\n\n            # columnas visibles en el orden de COLS\n            idx_visibles = {}\n            f_marca = None\n            for clave, ref, hdr in COLS:\n                f = definition.AddField(campos_col[clave])\n                f.IsHidden = False\n                f.ColumnHeading = hdr\n                idx_visibles[clave] = definition.GetFieldCount() - 1\n                if clave == 'marca':\n                    f_marca = f\n\n            # filtro oculto\n            f_filtro = definition.AddField(campo_filtro)\n            f_filtro.IsHidden = True\n\n            # agrupacion: L1 (con encabezado) -> L2 (con encabezado) -> MARCA (sin encabezado,\n            # colapsa una fila por marca)\n            sg1 = ScheduleSortGroupField(f_l1.FieldId)\n            sg1.ShowHeader = True\n            definition.AddSortGroupField(sg1)\n            sg2 = ScheduleSortGroupField(f_l2.FieldId)\n            sg2.ShowHeader = True\n            definition.AddSortGroupField(sg2)\n            sg3 = ScheduleSortGroupField(f_marca.FieldId)\n            sg3.ShowHeader = False\n            definition.AddSortGroupField(sg3)\n\n            definition.AddFilter(ScheduleFilter(f_filtro.FieldId, ScheduleFilterType.Equal, sheet_number))\n            doc.Regenerate()\n\n            if template_tabla is not None and sched.ViewTemplateId != template_tabla.Id:\n                sched.ViewTemplateId = template_tabla.Id\n                doc.Regenerate()\n\n            if estilo_grid is not None:\n                set_param_by_name(sched, 'Grid lines', estilo_grid)\n                set_param_by_name(sched, 'Outline', estilo_grid)\n            if tipo_header is not None:\n                set_param_by_name(sched, 'Header text', tipo_header)\n            if tipo_body is not None:\n                set_param_by_name(sched, 'Body text', tipo_body)\n            set_param_by_name(sched, 'Show Title', 1)\n            set_param_by_name(sched, 'Show Headers', 1)\n\n            anchos = anchos_desde_textos(textos_col)\n            d = sched.Definition\n            for clave, idx in idx_visibles.items():\n                try:\n                    d.GetField(idx).Width = anchos[clave]\n                except Exception as e:\n                    log.append('ERROR {} ancho {}: {}'.format(sheet_number, clave, e))\n\n            p_titulo = sched.get_Parameter(BuiltInParameter.VIEW_DESCRIPTION)\n            if p_titulo is not None and not p_titulo.IsReadOnly and p_titulo.AsString() != titulo_tabla:\n                p_titulo.Set(titulo_tabla)\n            return True\n\n        creados = 0\n        ya_estaban = 0\n        limpiados = 0\n\n        TransactionManager.Instance.EnsureInTransaction(doc)\n        try:\n            asegurar_params()\n            if guid_sheet_arm[0] is None or any(n not in guids_arm for n in NOMBRES_ARM):\n                log.append('ERROR: no se pudieron crear/enlazar los parametros compartidos de la tabla. No se creo nada.')\n                faltan = [n for n in NOMBRES_ARM if n not in guids_arm]\n                if guid_sheet_arm[0] is None:\n                    faltan.append(NOMBRE_PARAM_SHEET_ARM)\n                log.append('Faltantes: ' + ', '.join(faltan))\n                tipos_por_sheet = {}\n\n            def escribir(el, guid, valor):\n                p = el.get_Parameter(guid)\n                if p is not None and not p.IsReadOnly and p.AsString() != valor:\n                    p.Set(valor)\n\n            for sheet_number, (sh, tipos) in tipos_por_sheet.items():\n                textos_col = dict((clave, [hdr]) for clave, _ref, hdr in COLS)\n\n                # barras legitimas de este sheet (representante de cada tipo)\n                barras_por_tipo = {}\n                barras_legitimas = set()\n                for tname in tipos:\n                    ai, barras = representante_con_barras(tname)\n                    barras_por_tipo[tname] = (ai, barras)\n                    for r in barras:\n                        barras_legitimas.add(r.Id.Value)\n\n                # limpieza GLOBAL: cualquier elemento con SHEET_ARMADURAS = este sheet que\n                # ya no sea legitimo (barras de corridas viejas, o fundaciones marcadas por\n                # la version anterior de esta tabla) se limpia para que no filtre filas.\n                regla = ParameterFilterRuleFactory.CreateEqualsRule(\n                    SharedParameterElement.Lookup(doc, guid_sheet_arm[0]).Id, sheet_number)\n                filtro_global = ElementParameterFilter(regla)\n                for el in FilteredElementCollector(doc).WherePasses(filtro_global).WhereElementIsNotElementType().ToElements():\n                    if el.Id.Value in barras_legitimas:\n                        continue\n                    pc_o = el.get_Parameter(guid_sheet_arm[0])\n                    if pc_o is not None and not pc_o.IsReadOnly and pc_o.AsString():\n                        pc_o.Set('')\n                        limpiados += 1\n\n                for tname in tipos:\n                    ai, barras = barras_por_tipo[tname]\n                    cant_assembly = len(by_type.get(tname, []))\n                    cant_str = 'CANT={}'.format(cant_assembly)\n                    if not barras:\n                        log.append('AVISO: el tipo {} no tiene barras asociadas (sheet {}).'.format(tname, sheet_number))\n                        continue\n\n                    # Encabezado nivel 1: tiene que ser UNICO por TIPO de assembly. OJO:\n                    # ELEMENTO_TBL es texto que cargan A MANO los modeladores y NO es unico\n                    # por tipo - verificado por MCP sobre el modelo real: 132 barras de tipos\n                    # de fundacion DISTINTOS comparten \"FUNDACION FN-1002\". Usarlo tal cual\n                    # hacia que dos tipos cayeran bajo el MISMO encabezado y el segundo\n                    # apareciera huerfano, mostrando solo su \"CANT=N\" sin nombre de assembly\n                    # (bug reportado por Javier, 2026-07-21). Ahora ELEMENTO_TBL se usa solo\n                    # si de verdad corresponde a ESTE tipo (contiene tname); si no, se\n                    # reconstruye con su prefijo descriptivo (ej. \"FUNDACION\") + el nombre\n                    # REAL del tipo, que es el unico dato autoritativo.\n                    elems = [rebar_elemento(r) for r in barras if rebar_elemento(r)]\n                    elem_txt = elems[0] if elems else ''\n                    if elem_txt and tname in elem_txt:\n                        header_l1 = elem_txt\n                    else:\n                        prefijo = ''\n                        if elem_txt and ' ' in elem_txt:\n                            prefijo = elem_txt.rsplit(' ', 1)[0].strip()\n                        header_l1 = ('{} {}'.format(prefijo, tname)).strip() if prefijo else tname\n                        if elem_txt:\n                            log.append('AVISO {}: las barras traen ELEMENTO_TBL \"{}\", que no corresponde a este assembly; se usa \"{}\" como encabezado.'.format(tname, elem_txt, header_l1))\n\n                    # agrupar barras por MARCA (ITEM_TBL)\n                    por_marca = {}\n                    for r in barras:\n                        por_marca.setdefault(rebar_marca(r), []).append(r)\n\n                    for marca, rs in por_marca.items():\n                        # datos por barra\n                        tipos_v = set()\n                        diam_v = set()\n                        af_v = [set(), set(), set(), set(), set(), set()]\n                        unit_v = set()\n                        obs_v = set()\n                        cant_total = 0\n                        total_m = 0.0\n                        peso_total = 0.0\n                        for r in rs:\n                            q = rebar_quantity(r)\n                            diam = rebar_diam_mm(r)\n                            af = rebar_af_mm(r)\n                            unit_m = sum(af) / 1000.0\n                            peso_u = (diam * diam) * PESO_K * unit_m\n                            cant_total += q\n                            total_m += unit_m * q\n                            peso_total += peso_u * q\n                            tipos_v.add(rebar_tipo(r))\n                            diam_v.add(int(round(diam)))\n                            for i in range(6):\n                                af_v[i].add(int(round(af[i])))\n                            unit_v.add(round(unit_m, 2))\n                            obs_v.add(rebar_obs(r))\n\n                        def uno_o_varies(conj, fmt):\n                            vals = set(conj)\n                            if len(vals) == 1:\n                                return fmt(next(iter(vals)))\n                            return '<varies>'\n\n                        v_tipo = uno_o_varies(tipos_v, lambda x: str(x))\n                        v_diam = uno_o_varies(diam_v, lambda x: str(int(x)))\n                        v_af = [uno_o_varies(af_v[i], lambda x: str(int(x))) for i in range(6)]\n                        v_unit = uno_o_varies(unit_v, formato_2dec)\n                        # peso unitario: solo definido si diametro y unit son unicos\n                        if len(diam_v) == 1 and len(unit_v) == 1:\n                            d0 = next(iter(diam_v))\n                            u0 = next(iter(unit_v))\n                            v_peso_u = formato_2dec((d0 * d0) * PESO_K * u0)\n                        else:\n                            v_peso_u = '<varies>'\n                        obs_no_vacias = [o for o in obs_v if o]\n                        if len(set(obs_no_vacias)) == 1:\n                            v_obs = obs_no_vacias[0]\n                        elif not obs_no_vacias:\n                            v_obs = ''\n                        else:\n                            v_obs = '<varies>'\n\n                        v_cant = str(cant_total)\n                        v_total = formato_2dec(total_m)\n                        v_peso_t = formato_2dec(peso_total)\n\n                        valores = {\n                            'tipo': v_tipo, 'diam': v_diam, 'cant': v_cant,\n                            'a': v_af[0], 'b': v_af[1], 'c': v_af[2],\n                            'd': v_af[3], 'e': v_af[4], 'f': v_af[5],\n                            'unit': v_unit, 'total': v_total,\n                            'peso_u': v_peso_u, 'peso_t': v_peso_t, 'obs': v_obs,\n                        }\n\n                        # textos para calculo de ancho de columna\n                        textos_col['marca'].append(marca)\n                        for k, val in valores.items():\n                            textos_col[k].append(val)\n\n                        # escribir a cada barra de la marca (mismos valores -> colapsan)\n                        for r in rs:\n                            escribir(r, guid_sheet_arm[0], sheet_number)\n                            escribir(r, guids_arm['ARM_L1'], header_l1)\n                            escribir(r, guids_arm['ARM_L2'], cant_str)\n                            escribir(r, guids_arm['ARM_TIPO'], valores['tipo'])\n                            escribir(r, guids_arm['ARM_DIAM'], valores['diam'])\n                            escribir(r, guids_arm['ARM_CANT'], valores['cant'])\n                            escribir(r, guids_arm['ARM_A'], valores['a'])\n                            escribir(r, guids_arm['ARM_B'], valores['b'])\n                            escribir(r, guids_arm['ARM_C'], valores['c'])\n                            escribir(r, guids_arm['ARM_D'], valores['d'])\n                            escribir(r, guids_arm['ARM_E'], valores['e'])\n                            escribir(r, guids_arm['ARM_F'], valores['f'])\n                            escribir(r, guids_arm['ARM_UNIT'], valores['unit'])\n                            escribir(r, guids_arm['ARM_TOTAL'], valores['total'])\n                            escribir(r, guids_arm['ARM_PESO_U'], valores['peso_u'])\n                            escribir(r, guids_arm['ARM_PESO_T'], valores['peso_t'])\n                            escribir(r, guids_arm['ARM_OBS'], valores['obs'])\n\n                # --- crear / reconfigurar la tabla del sheet ---\n                nombre_schedule = PREFIJO_SCHEDULE + sheet_number\n                sched_existente = next(\n                    (doc.GetElement(ssi.ScheduleId) for ssi in existing_sheet_instances.get(sh.Id.Value, [])\n                     if doc.GetElement(ssi.ScheduleId) is not None\n                     and elem_name(doc.GetElement(ssi.ScheduleId)) == nombre_schedule),\n                    None)\n\n                # si existe con este nombre pero de otra categoria (version anterior:\n                # multi-categoria), borrarla: la categoria de un schedule no se cambia.\n                candidato = sched_existente or existing_schedules.get(nombre_schedule)\n                if candidato is not None and candidato.Definition.CategoryId != REBAR_CAT_ID:\n                    doc.Delete(candidato.Id)\n                    existing_schedules.pop(nombre_schedule, None)\n                    sched_existente = None\n                    candidato = None\n                    log.append('AVISO: se recreo la tabla del sheet {} (era de otra categoria).'.format(sheet_number))\n\n                if sched_existente is not None:\n                    configurar_schedule(sched_existente, sheet_number, textos_col)\n                    ya_estaban += 1\n                    continue\n\n                sched = existing_schedules.get(nombre_schedule)\n                if sched is None:\n                    sched = ViewSchedule.CreateSchedule(doc, REBAR_CAT_ID)\n                    sched.Name = nombre_schedule\n                    existing_schedules[nombre_schedule] = sched\n                if not configurar_schedule(sched, sheet_number, textos_col):\n                    continue\n\n                x0, y0, x1, y1 = usable_rect(sh)\n                punto = XYZ(x1, y1, 0.0)\n                try:\n                    ScheduleSheetInstance.Create(doc, sh.Id, sched.Id, punto)\n                    creados += 1\n                    log.append('OK: tabla de armaduras creada en sheet {} ({} tipos).'.format(sheet_number, len(tipos)))\n                except Exception as e:\n                    log.append('ERROR colocando la tabla en sheet {}: {}'.format(sheet_number, e))\n        finally:\n            TransactionManager.Instance.TransactionTaskDone()\n\n        log.insert(0, 'Tablas creadas: {} | ya existian: {} | SHEET_ARMADURAS limpiados: {}'.format(\n            creados, ya_estaban, limpiados))\n        OUT = log\n",
+      "Engine": "PythonNet3",
+      "VariableInputPorts": true,
+      "Id": "a6010000000000000000000000000001",
+      "NodeType": "PythonScriptNode",
+      "Inputs": [
+        {
+          "Id": "a6010000000000000000000000000002",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6010000000000000000000000000003",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6010000000000000000000000000004",
+          "Name": "IN[2]",
+          "Description": "Input #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6010000000000000000000000000005",
+          "Name": "IN[3]",
+          "Description": "Input #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6010000000000000000000000000006",
+          "Name": "IN[4]",
+          "Description": "Input #4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6010000000000000000000000000007",
+          "Name": "IN[5]",
+          "Description": "Input #5",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a6010000000000000000000000000009",
+          "Name": "IN[6]",
+          "Description": "Input #6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a601000000000000000000000000000a",
+          "Name": "IN[7]",
+          "Description": "Input #7",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a6010000000000000000000000000008",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "WatchWidth": 620.0,
+      "WatchHeight": 400.0,
+      "Id": "c6010000000000000000000000000001",
+      "NodeType": "ExtensionNode",
+      "Inputs": [
+        {
+          "Id": "c6010000000000000000000000000002",
+          "Name": "",
+          "Description": "Node to show output from",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c6010000000000000000000000000003",
+          "Name": "",
+          "Description": "Node output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualizes a node's output"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b6010000000000000000000000000002",
+      "End": "a6010000000000000000000000000002",
+      "Id": "d6010000000000000000000000000001",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6020000000000000000000000000002",
+      "End": "a6010000000000000000000000000003",
+      "Id": "d6010000000000000000000000000002",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6030000000000000000000000000002",
+      "End": "a6010000000000000000000000000004",
+      "Id": "d6010000000000000000000000000003",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6040000000000000000000000000002",
+      "End": "a6010000000000000000000000000005",
+      "Id": "d6010000000000000000000000000004",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6050000000000000000000000000002",
+      "End": "a6010000000000000000000000000006",
+      "Id": "d6010000000000000000000000000005",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6060000000000000000000000000002",
+      "End": "a6010000000000000000000000000007",
+      "Id": "d6010000000000000000000000000006",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6070000000000000000000000000002",
+      "End": "a6010000000000000000000000000009",
+      "Id": "d6010000000000000000000000000008",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6080000000000000000000000000002",
+      "End": "a601000000000000000000000000000a",
+      "Id": "d6010000000000000000000000000009",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6010000000000000000000000000008",
+      "End": "c6010000000000000000000000000002",
+      "Id": "d6010000000000000000000000000007",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "EnableLegacyPolyCurveBehavior": false,
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "4.0",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "10.3",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "4.0.2.3852",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "_Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "b6010000000000000000000000000001",
+        "Name": "Sheets destino (numeros con coma, o prefijo)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "Id": "b6020000000000000000000000000001",
+        "Name": "Margen (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 150.0
+      },
+      {
+        "Id": "b6030000000000000000000000000001",
+        "Name": "Reserva lado derecho (mm)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 300.0
+      },
+      {
+        "Id": "b6040000000000000000000000000001",
+        "Name": "Estilo de linea (grid/outline)",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 450.0
+      },
+      {
+        "Id": "b6050000000000000000000000000001",
+        "Name": "Tipo de texto encabezados",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 600.0
+      },
+      {
+        "Id": "b6060000000000000000000000000001",
+        "Name": "Tipo de texto cuerpo",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 750.0
+      },
+      {
+        "Id": "b6070000000000000000000000000001",
+        "Name": "Titulo de la tabla",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 900.0
+      },
+      {
+        "Id": "b6080000000000000000000000000001",
+        "Name": "View template para las tablas",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 0.0,
+        "Y": 1050.0
+      },
+      {
+        "Id": "a6010000000000000000000000000001",
+        "Name": "PY | Tabla de assemblies por sheet",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 480.0,
+        "Y": 350.0
+      },
+      {
+        "Id": "c6010000000000000000000000000001",
+        "Name": "Log",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": true,
+        "Excluded": false,
+        "ShowGeometry": true,
+        "X": 900.0,
+        "Y": 350.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 0.8
+  }
+}
