@@ -48,7 +48,7 @@
       "Name": "Altura de corte de zapata en planta armadura (cm)",
       "Type": "number",
       "Type2": "number",
-      "Value": "30",
+      "Value": "100",
       "MaximumValue": 100.0,
       "MinimumValue": 5.0,
       "StepValue": 5.0,
@@ -242,7 +242,7 @@
       ],
       "Replication": "Disabled",
       "Description": "Produces integer values",
-      "InputValue": 30
+      "InputValue": 100
     },
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
@@ -593,6 +593,12 @@
       "IsHidden": "False"
     },
     {
+      "Start": "b2120000000000000000000000000002",
+      "End": "a201000000000000000000000000000e",
+      "Id": "d201000000000000000000000000000d",
+      "IsHidden": "False"
+    },
+    {
       "Start": "b2050000000000000000000000000002",
       "End": "a2010000000000000000000000000007",
       "Id": "d2010000000000000000000000000006",
@@ -632,12 +638,6 @@
       "Start": "b2100000000000000000000000000002",
       "End": "a201000000000000000000000000000c",
       "Id": "d201000000000000000000000000000b",
-      "IsHidden": "False"
-    },
-    {
-      "Start": "b2120000000000000000000000000002",
-      "End": "a201000000000000000000000000000e",
-      "Id": "d201000000000000000000000000000d",
       "IsHidden": "False"
     },
     {
@@ -839,8 +839,8 @@
       }
     ],
     "Annotations": [],
-    "X": -212.04090708233412,
-    "Y": -592.8178852182099,
-    "Zoom": 1.3340820786538257
+    "X": 595.1045969036651,
+    "Y": -99.501758024971,
+    "Zoom": 1.00283541674907
   }
 }
