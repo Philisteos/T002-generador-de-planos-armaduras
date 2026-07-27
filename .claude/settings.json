@@ -16,7 +16,11 @@
       "mcp__revit-2027-oficial__query_model",
       "mcp__revit-2027-oficial__get_element_data",
       "Bash(node -e ' *)",
-      "Bash(node \"C:/Users/JAVIER~2/AppData/Local/Temp/claude/c--Users-Javier-Ochoa-Desktop-Design-Technologist-T001-Generador-de-planos/d3b6e54c-45fe-46c5-bc3b-743b3ca456be/scratchpad/build_06.js\" \"C:/Users/JAVIER~2/AppData/Local/Temp/claude/c--Users-Javier-Ochoa-Desktop-Design-Technologist-T001-Generador-de-planos/d3b6e54c-45fe-46c5-bc3b-743b3ca456be/scratchpad/06_code.py\" \"06_Tabla de assemblies.dyn\")"
+      "Bash(node \"C:/Users/JAVIER~2/AppData/Local/Temp/claude/c--Users-Javier-Ochoa-Desktop-Design-Technologist-T001-Generador-de-planos/d3b6e54c-45fe-46c5-bc3b-743b3ca456be/scratchpad/build_06.js\" \"C:/Users/JAVIER~2/AppData/Local/Temp/claude/c--Users-Javier-Ochoa-Desktop-Design-Technologist-T001-Generador-de-planos/d3b6e54c-45fe-46c5-bc3b-743b3ca456be/scratchpad/06_code.py\" \"06_Tabla de assemblies.dyn\")",
+      "Bash(rm -f \"/c/Users/JAVIER~2/AppData/Local/Temp/claude/c--Users-Javier-Ochoa-Desktop-Design-Technologist-T002-Generador-de-planos---Armaduras/e54ca784-c2c2-4594-a90a-22646e586f3f/scratchpad/test_layout2.py\"; echo done)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\JAVIER~2\\AppData\\Local\\Temp\\claude\\c--Users-Javier-Ochoa-Desktop-Design-Technologist-T002-Generador-de-planos---Armaduras\\e54ca784-c2c2-4594-a90a-22646e586f3f\\scratchpad"
     ]
   }
 }
