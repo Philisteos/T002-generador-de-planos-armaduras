@@ -104,6 +104,27 @@ y está diseñado para **no tocar nada de esa rutina**:
   los mismos elementos físicos en ambas rutinas. Los schedules se llaman
   `TBL_ARMADURAS_{sheet}` (nunca colisionan con los `TBL_ASSEMBLIES_*` de Formas), y el
   06 solo considera sheets que tengan plantas de ARMADURAS colocadas.
+- **Columnas vivas vs. columnas foto en la tabla (05, 2026-08-05)**: MARCA, TIPO,
+  Diam (mm), CANTIDAD TOTAL BARRAS, **A–F (mm)** y OBSERVACION leen el **campo nativo**
+  de la barra, así que se actualizan solos cuando el modelador edita la armadura, sin
+  correr el graph. `A`–`F` son los parámetros compartidos reales de la RebarShape (GUIDs
+  `834200b7…` etc.), los mismos que el 05 antes **copiaba** a unos `ARM_A`–`ARM_F` de
+  texto; esa copia se eliminó. Siguen siendo foto (hay que re-correr el 05) solo
+  **UNIT. (m) / TOTAL (m) / PESO UNIT. / PESO TOTAL**, porque dependen de la regla de
+  negocio `UNIT = A+B+C+D+E+F` — que **no** es el `Bar Length` de Revit, ese descuenta el
+  desarrollo de los dobleces (~2,6% menos: 3034 vs 3116 mm en la marca 1609) — y la API
+  de Revit no permite crear valores calculados de schedule.
+- **Por qué desapareció el `<varies>` (05, 2026-08-05)**: Revit colapsa dos filas de un
+  schedule no itemizado solo si **coinciden todos los campos visibles**; si uno difiere,
+  parte la fila. La versión anterior evitaba eso escribiendo el mismo texto en todas las
+  barras de la marca (`<varies>` cuando diferían), que es exactamente lo que obligaba a
+  duplicar A–F en la familia. Con campos nativos ya no se puede homogeneizar, así que una
+  marca con dos geometrías **sale en una fila por variante** (ej. la 1609, que agrupa a
+  propósito la barra SUP. y la INF.: eran 10 de 154 barras en el modelo de prueba). Para
+  que los totales de cada fila cuadren, el 05 agrupa y precalcula por
+  **marca + tipo + diámetro + A–F + observación** (la misma clave con que Revit colapsa),
+  no por marca; y CANTIDAD es `Quantity` con `DisplayType = Totals`, o sea la suma la hace
+  Revit sobre las barras que realmente componen la fila.
 - **Tags de familias (ex-05, ahora en el 03)**: el antiguo paso 05 se eliminó del
   pipeline (2026-07-15) — su tagueo de familias vive en el 03, automático y sin
   selección, solo en plantas de ARMADURAS cuyo assembly tiene 2+ tipos distintos de
@@ -253,6 +274,20 @@ número de láminas que calculó el 01 puede no alcanzar para lo que realmente c
   ("Líneas Tablas Finas", "C_TXT_RomanD2.3mm...") son los inputs por defecto del 06; si el
   Revit del usuario los expone con otro nombre exacto, el log lo avisa y basta con corregir
   el input (sin tocar el graph).
+- **Las 4 columnas foto de la tabla de despiece** (UNIT / TOTAL / PESO UNIT. / PESO TOTAL):
+  para que también queden vivas hay que dejar de crear el schedule desde cero y pasar a
+  **duplicar un schedule prototipo** hecho a mano en el proyecto, con esas cuatro como
+  *valores calculados* (la API no las puede crear, pero sí se copian al duplicar); el 05
+  solo cambiaría el filtro `SHEET_ARMADURAS` por lámina. Punto frágil a resolver antes:
+  la fórmula de peso (`Diam² × 0,617/100 × largo`) mezcla unidades y las fórmulas de Revit
+  exigen consistencia dimensional. Alternativa sin prototipo: aceptar el criterio de largo
+  desarrollado y usar los nativos `Bar Length`, `Total Bar Length` y `Reinforcement Mass`
+  (verificado: `Bar Mass per Unit Length` de Revit da 1,579 kg/m para ø16, idéntico a la
+  fórmula de BIOS — la única diferencia es el largo, no el peso específico).
+- Quedan huérfanos en los modelos ya procesados los compartidos `ARM_TIPO`, `ARM_DIAM`,
+  `ARM_CANT`, `ARM_A`–`ARM_F` y `ARM_OBS`, con el último valor que escribió la versión
+  anterior del 05. Ninguna tabla los mira; si molestan en las propiedades de las barras hay
+  que borrarlos a mano del proyecto (el 05 ya no los crea ni los escribe).
 - Si se acumula desperdicio de espacio bajo la reserva del lado derecho (hoy es una franja
   completa a lo alto de la lámina, no solo la esquina), evaluar un recorte más preciso solo
   en la zona de la tabla.
